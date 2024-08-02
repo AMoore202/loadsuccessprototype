@@ -1,0 +1,21 @@
+.text-black {
+    color: var(--MC-Black);
+}
+
+.text-success {
+    color: var(--MC-Success);
+}
+
+.text-error {
+    color: var(--MC-Error)
+}
+
+.text-regular {
+    font-size: 1.375rem;
+    font-weight: 400;
+}
+
+.text-large {
+    font-size: 1.875rem;
+    font-weight: 700;
+}

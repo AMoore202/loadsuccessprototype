@@ -1,94 +1,110 @@
-import Image from "next/image";
+import { 
+  OutboundFlightIcon, 
+  CalendarIcon,
+  FinIcon,
+  ClockIcon,
+  BagIcon,
+  PieceIcon,
+  EmptyCartIcon,
+} from "@/app/ui/Icons";
+import LabelledTextWithIcon from "./ui/LabelledTextWithIcon";
+import Card from "./ui/Card";
+import InstructionalText from "./ui/InstructionalText";
+import LabelledText from "./ui/typography/LabelledText";
+import Label from "./ui/typography/Label";
+import Text from "./ui/typography/Text";
+import Header from "./ui/header"
 import styles from "./page.module.css";
 
 export default function Home() {
+  const outboundFlightIcon = <OutboundFlightIcon />;
+  const calendarIcon = <CalendarIcon />;
+  const finIcon = <FinIcon />;
+  const clockIcon = <ClockIcon />;
+  const bagIcon = <BagIcon />;
+  const pieceIcon = <PieceIcon />;
+  const emptyCartIcon = <EmptyCartIcon />;
+  
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      <Header />
+      <div className={styles.content}>
+        <Card>
+          <div className={styles.flightcardcontent}>
+            <LabelledTextWithIcon 
+              gridStyles = {{ gridColumn: '1 / 2', gridRow: '1 / 2' }}
+              icon = {outboundFlightIcon}
+            >
+              <LabelledText>
+                <Label text="FLIGHT" />
+                <Text text="ZZ1234" />
+              </LabelledText>
+            </LabelledTextWithIcon>
+            <LabelledTextWithIcon
+              gridStyles = {{ gridColumn: '2 / 2', gridRow: '1 / 2' }}
+              icon = {calendarIcon}
+            >
+              <LabelledText>
+                <Label text="DEP DATE" />
+                <Text text="23JUL" />
+              </LabelledText>
+            </LabelledTextWithIcon>
+            <LabelledTextWithIcon
+              gridStyles = {{ gridColumn: '1 / 2', gridRow: '2 / 2' }}
+              icon = {finIcon}
+            >
+              <LabelledText>
+                <Label text="FIN" />
+                <Text text="BRK7A" />
+              </LabelledText>
+            </LabelledTextWithIcon>
+            <LabelledTextWithIcon
+              gridStyles = {{ gridColumn: '2 / 2', gridRow: '2 / 2' }}
+              icon = {clockIcon}
+            >
+              <LabelledText>
+                <Label text="TTD" />
+                <Text text="7h 17m" />
+              </LabelledText>
+            </LabelledTextWithIcon>
+          </div>
+        </Card>
+        <div className={styles.bagandcargocards}>
+          <Card>
+            <LabelledTextWithIcon gridStyles={{}} icon = {bagIcon}>
+              <LabelledText>
+                <Label text ="OK / NOT OK TO LOAD" />
+                <div className={styles.toloadcounts}>
+                  <Text text="5" size="large" color="success" />
+                  <Text text="/" size="large"/>
+                  <Text text="1" size="large" color="error"/>
+                </div>
+              </LabelledText>
+            </LabelledTextWithIcon>
+          </Card>
+          <Card>
+            <LabelledTextWithIcon gridStyles={{}} icon = {pieceIcon}>
+              <LabelledText>
+                <Label text="OK / NOT OK TO LOAD" />
+                <div className={styles.toloadcounts}>
+                  <Text text="5" size="large" color="success" />
+                  <Text text="/0" size="large"/>
+                </div>
+              </LabelledText>
+            </LabelledTextWithIcon>
+          </Card>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+        <Card>
+          <LabelledTextWithIcon gridStyles={{}} icon = {emptyCartIcon}>
+              <LabelledText>
+                <Label text="ULD / Cart" />
+                <Text text="BINA" size="large" />
+              </LabelledText>
+          </LabelledTextWithIcon>
+        </Card>
+        <InstructionalText
+          text = "Scan a tag or tap on the button below to scan it with the camera. Swipe the Flight or ULD/Cart cards to change the flight or ULD/Cart."
         />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
       </div>
     </main>
   );

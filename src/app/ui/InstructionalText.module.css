@@ -1,0 +1,13 @@
+.wrapper {
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.text {
+    font-size: 0.875rem;
+    padding: 0.5rem;
+    font-weight: 400;
+    color: var(--MC-Black);
+    width: 100%;
+    background-color: var(--MC-InstructionalText);
+}
