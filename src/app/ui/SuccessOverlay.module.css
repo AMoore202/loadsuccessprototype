@@ -1,0 +1,28 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    gap: 1rem;
+    background: var(--MC-SuccessOverlay);
+    height: 100%;
+    padding: 2rem;
+}
+
+.text {
+    color: var(--MC-White);
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 700;
+}

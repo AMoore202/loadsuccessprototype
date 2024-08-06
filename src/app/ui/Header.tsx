@@ -1,21 +1,31 @@
 import styles from "@/app/ui/Header.module.css";
 import Image from "next/image";
-import { HamburgerMenuIcon } from "./Icons";
+import { HamburgerMenuIcon, CloseMenuIcon } from "./Icons";
 import PageTitle from "./typography/PageTitle";
 
-export default function Header() {
+interface HeaderProps {
+    title: string;
+    icon?: 'hamburger' | 'close';
+    showLogo?: boolean;
+}
+
+export default function Header({title, icon = 'hamburger' , showLogo = true}: HeaderProps) {
+    const menuIcon = icon === 'close' ? <CloseMenuIcon /> : <HamburgerMenuIcon />; 
+    
     return(
         <div className={styles.header}>
             <div className={styles.leftcontent}>
-                <HamburgerMenuIcon />
-                <PageTitle text="Load Flight" />
+                {menuIcon}
+                <PageTitle text={title} />
             </div>
-            <Image             
-                src="/images/BrockLogo.png"
-                width={78}
-                height={27}
-                alt='Brock Solutions Logo'
-            />
+            {showLogo && (
+                <Image             
+                    src="/images/BrockLogo.png"
+                    width={78}
+                    height={27}
+                    alt='Brock Solutions Logo'
+                />
+            )}
         </div>
     );
 }

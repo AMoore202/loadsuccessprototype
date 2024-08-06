@@ -1,0 +1,8 @@
+.scanbar {
+    display: flex;
+    padding: 0.7rem 0.5rem;
+    justify-content: flex-end;
+    align-items: center;
+    align-self: stretch;
+    background: #232323;
+}

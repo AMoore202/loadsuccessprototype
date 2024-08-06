@@ -1,3 +1,7 @@
+"use client";
+
+import styles from "./page.module.css";
+import { useState } from "react";
 import { 
   OutboundFlightIcon, 
   CalendarIcon,
@@ -13,10 +17,20 @@ import InstructionalText from "./ui/InstructionalText";
 import LabelledText from "./ui/typography/LabelledText";
 import Label from "./ui/typography/Label";
 import Text from "./ui/typography/Text";
-import Header from "./ui/header"
-import styles from "./page.module.css";
+import Header from "./ui/Header"
+import SuccessOverlay from "./ui/SuccessOverlay";
+import Scanbar from "./ui/scanbar/Scanbar";
+import ScanbarButton from "./ui/scanbar/ScanBarButton";
 
 export default function Home() {
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  const openOverlay = () => {
+    setShowOverlay(!showOverlay);
+  }
+
+  console.log("Show overlay: " + showOverlay);
+  
   const outboundFlightIcon = <OutboundFlightIcon />;
   const calendarIcon = <CalendarIcon />;
   const finIcon = <FinIcon />;
@@ -27,7 +41,8 @@ export default function Home() {
   
   return (
     <main className={styles.main}>
-      <Header />
+      <SuccessOverlay />
+      <Header title="Load Flight" icon="hamburger" />
       <div className={styles.content}>
         <Card>
           <div className={styles.flightcardcontent}>
@@ -106,6 +121,9 @@ export default function Home() {
           text = "Scan a tag or tap on the button below to scan it with the camera. Swipe the Flight or ULD/Cart cards to change the flight or ULD/Cart."
         />
       </div>
+      <Scanbar>
+        <ScanbarButton onClick={openOverlay} />
+      </Scanbar>
     </main>
   );
 }
