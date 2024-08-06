@@ -20,13 +20,19 @@ import Text from "./ui/typography/Text";
 import Header from "./ui/Header"
 import SuccessOverlay from "./ui/SuccessOverlay";
 import Scanbar from "./ui/scanbar/Scanbar";
-import ScanbarButton from "./ui/scanbar/ScanBarButton";
+import ScanbarButton from "./ui/scanbar/ScanbarButton";
 
 export default function Home() {
   const [showOverlay, setShowOverlay] = useState(false);
 
   const openOverlay = () => {
-    setShowOverlay(!showOverlay);
+    setTimeout(() => {
+      setShowOverlay(true);
+    }, 500);
+    
+    setTimeout(() => {
+      setShowOverlay(false);
+    }, 1200);
   }
 
   console.log("Show overlay: " + showOverlay);
@@ -41,7 +47,7 @@ export default function Home() {
   
   return (
     <main className={styles.main}>
-      <SuccessOverlay />
+      {showOverlay && <SuccessOverlay />}
       <Header title="Load Flight" icon="hamburger" />
       <div className={styles.content}>
         <Card>

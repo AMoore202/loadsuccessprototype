@@ -1,17 +1,25 @@
 import styles from "./ScanbarButton.module.css";
 import ScanButtonLight from "./ScanButtonLight";
+import { motion, MotionProps } from "framer-motion";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+type ButtonProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onAnimationStart' | 'onDrag' | 'onDragEnd' | 'onDragStart' | 'onDragTransitionEnd' | 'onUpdate'> & 
+                   Omit<MotionProps, 'transition' | 'transitionEnd'> & {
+                      transition?: MotionProps['transition'];
+                   };
 
 export default function ScanbarButton( {...rest}: ButtonProps ) {
     return(
         <div className={styles.outer}>
-            <button className={styles.inner} {...rest}>
+            <motion.button 
+                className={styles.inner} 
+                whileTap={{ scale: 0.95, backgroundColor: "#242424" }}
+                {...rest}
+            >
                 <ScanButtonLight />
                 <p className={styles.text}>
                     Scan a Bag
                 </p>
-            </button>
+            </motion.button>
         </div>
     );
 }
