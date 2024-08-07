@@ -19,6 +19,7 @@ import Label from "./ui/typography/Label";
 import Text from "./ui/typography/Text";
 import Header from "./ui/Header"
 import SuccessOverlay from "./ui/SuccessOverlay";
+import ExceptionOverlay from "./ui/ExceptionOverlay";
 import Scanbar from "./ui/scanbar/Scanbar";
 import ScanbarButton from "./ui/scanbar/ScanbarButton";
 
@@ -49,6 +50,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.android}>
         {showOverlay && <SuccessOverlay />}
+        <ExceptionOverlay />
         <Header title="Load Flight" icon="hamburger" />
         <div className={styles.content}>
           <Card>

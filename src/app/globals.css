@@ -3,10 +3,12 @@
   --MC-Primary: #183C73;
   --MC-Black: #000000;
   --MC-White: #FFFFFF;
+  --MC-Grey: #D9D9D9;
   --MC-InstructionalText: #FEF79C;
   --MC-Success: #00b050;
   --MC-Error: #ec1C24;
   --MC-SuccessOverlay: #0C8837;
+  --MC-ExceptionOverlay: #EB141C;
 }
 
 * {
