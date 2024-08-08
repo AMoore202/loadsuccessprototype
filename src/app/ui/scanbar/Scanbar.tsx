@@ -1,4 +1,4 @@
-import styles from "@/app/ui/scanbar/Scanbar.module.css"
+import styles from "@/app/ui/scanbar/Scanbar.module.css";
 
 interface ScanbarProps {
     children: React.ReactNode;

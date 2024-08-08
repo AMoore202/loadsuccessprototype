@@ -42,3 +42,9 @@
   display: flex;
   gap: 1px;
 }
+
+.switchtest {
+  width: 100%;
+  height: 4rem;
+  background: #fff;
+}

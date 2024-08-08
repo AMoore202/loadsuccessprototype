@@ -22,6 +22,18 @@ import SuccessOverlay from "./ui/SuccessOverlay";
 import ExceptionOverlay from "./ui/ExceptionOverlay";
 import Scanbar from "./ui/scanbar/Scanbar";
 import ScanbarButton from "./ui/scanbar/ScanbarButton";
+import { FormControl, FormLabel, Switch } from '@chakra-ui/react';
+
+function ToggleSwitch() {
+  return(
+    <FormControl display='flex' alignItems='center'>
+      <Switch id='success-exception' />
+      <FormLabel htmlFor='success-exception' mb='0'>
+        To load or not to load?
+      </FormLabel>
+    </FormControl>
+  );
+}
 
 export default function Home() {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -48,6 +60,9 @@ export default function Home() {
   
   return (
     <main className={styles.main}>
+      <div className={styles.switchtest}>
+        <ToggleSwitch />
+      </div>
       <div className={styles.android}>
         {showOverlay && <SuccessOverlay />}
         <ExceptionOverlay />
@@ -132,6 +147,7 @@ export default function Home() {
         </div>
       </div>
       <Scanbar>
+        {/* <ToggleSwitch /> */}
         <ScanbarButton onClick={openOverlay} />
       </Scanbar>
     </main>
