@@ -6,6 +6,7 @@
     padding: 0rem 1.5rem;
     background: var(--MC-Primary);
     box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.20);
+    flex-shrink: 0;
 }
 
 .leftcontent {

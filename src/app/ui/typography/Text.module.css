@@ -1,3 +1,7 @@
+.text-fill {
+    width: 100%;
+}
+
 .text-black {
     color: var(--MC-Black);
 }
@@ -17,11 +21,9 @@
 .text-regular {
     font-size: 1.375rem;
     font-weight: 400;
-    width: 100%
 }
 
 .text-large {
     font-size: 1.875rem;
     font-weight: 700;
-    width: 100%
 }
