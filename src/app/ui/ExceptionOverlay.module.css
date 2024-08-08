@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: calc(100% - 7.8915rem);
-    display: none;
+    display: flex;
     flex-direction: column;
     z-index: 1000;
 }
@@ -18,6 +18,8 @@
     background: var(--MC-ExceptionOverlay);
     height: 100%;
     padding: 1rem 0rem;
+    flex: 1 1 auto;
+    overflow: auto;
 }
 
 .topcontent {

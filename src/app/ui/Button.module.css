@@ -5,6 +5,7 @@
     align-items: center;
     border-radius: 1px;
     background: var(--MC-Primary);
+    border-width: 0;
 }
 
 .text {

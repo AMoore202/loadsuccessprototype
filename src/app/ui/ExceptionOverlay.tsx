@@ -34,7 +34,7 @@ export default function ExceptionOverlay() {
                         </LabelledText>
                     </div>
                     <div className={styles.card}>
-                        <Text text="Bag isn't scheduled for ZZ1234" color="white" />
+                        <Text text="Bag isn't scheduled for ZZ1234" fill={true} color="white" />
                     </div>
                 </div>
                 <div className={styles.actionsection}>
