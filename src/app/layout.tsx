@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import { ChakraProvider } from '@chakra-ui/react';
 
 const roboto = Roboto({
   weight: ['400', '500', '700', ],
@@ -20,21 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ChakraProvider>
-        <body className={roboto.className}>{children}</body>
-      </ChakraProvider>
+      <body className={roboto.className}>{children}</body>
     </html>
   );
 }
-
-
-
-// function MyApp({ Component, pageProps }) {
-//   return (
-    
-//       <Component {...pageProps} />
-//     </ChakraProvider>
-//   );
-// }
-
-// export default MyApp;
