@@ -1,0 +1,17 @@
+.button {
+    display: flex;
+    padding: 0.4375rem 0.875rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1px;
+    background: var(--MC-Primary);
+    border-width: 0;
+}
+
+.text {
+    color: var(--MC-White);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 150%;
+    text-transform: uppercase;
+}

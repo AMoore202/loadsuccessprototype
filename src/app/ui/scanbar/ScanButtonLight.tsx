@@ -1,11 +1,17 @@
-export default function ScanButtonLight() {
+interface LightProps {
+    exception?: boolean;
+}
+
+export default function ScanButtonLight( {exception=false}: LightProps) {
+    const colorFill = exception ? '#EC1C24' : "#00B050";
+
     return(
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <g filter="url(#filter0_f_49_203)">
-                <circle cx="8" cy="8" r="4" fill="#00B050"/>
+                <circle cx="8" cy="8" r="4" fill={colorFill}/>
             </g>
             <g filter="url(#filter1_f_49_203)">
-                <circle cx="8" cy="8" r="4" fill="#00B050"/>
+                <circle cx="8" cy="8" r="4" fill={colorFill}/>
             </g>
             <defs>
                 <filter id="filter0_f_49_203" x="3" y="3" width="10" height="10" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">

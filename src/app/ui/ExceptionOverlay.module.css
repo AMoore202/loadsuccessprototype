@@ -1,0 +1,82 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 7.8915rem);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    gap: 0.5rem;
+    background: var(--MC-ExceptionOverlay);
+    height: 100%;
+    padding: 1rem 0rem;
+    flex: 1 1 auto;
+    overflow: auto;
+}
+
+.topcontent {
+    display: flex;
+    flex-direction: column;
+    padding: 0rem 1rem;
+    align-items: center;
+    gap: 0.25rem;
+    align-self: stretch;
+}
+
+.exceptiontext {
+    align-self: stretch;
+    color: var(--MC-White);
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    border-bottom: 1px solid var(--MC-Grey);
+}
+
+.card {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border-top: 1px solid var(--MC-Grey);
+}
+
+.text {
+    color: var(--MC-White);
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 700;
+}
+
+.actionsection {
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    align-self: stretch;
+}
+
+.flightdetails {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    align-self: stretch;
+}

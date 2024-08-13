@@ -1,3 +1,7 @@
+.text-fill {
+    width: 100%;
+}
+
 .text-black {
     color: var(--MC-Black);
 }
@@ -8,6 +12,10 @@
 
 .text-error {
     color: var(--MC-Error)
+}
+
+.text-white {
+    color: var(--MC-White);
 }
 
 .text-regular {
