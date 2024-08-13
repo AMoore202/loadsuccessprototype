@@ -1,14 +1,13 @@
 import styles from "@/app/ui/NavBar.module.css";
-import Button from "./Button";
 
 interface NavBarProps {
-    buttonText: string;
+    children: React.ReactNode;
 }
 
-export default function NavBar( {buttonText}: NavBarProps) {
+export default function NavBar( {children}: NavBarProps) {
     return(
         <div className={styles.navbar}>
-            <Button text={buttonText} />
+            {children}
         </div>
     );
 }

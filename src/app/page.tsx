@@ -1,5 +1,6 @@
 "use client";
 
+import { ChangeEvent } from 'react';
 import styles from "./page.module.css";
 import { useState } from "react";
 import { 
@@ -22,23 +23,39 @@ import SuccessOverlay from "./ui/SuccessOverlay";
 import ExceptionOverlay from "./ui/ExceptionOverlay";
 import Scanbar from "./ui/scanbar/Scanbar";
 import ScanbarButton from "./ui/scanbar/ScanbarButton";
+import CustomSwitch from './ui/StyledSwitch';
 
 
 export default function Home() {
   const [showOverlay, setShowOverlay] = useState(false);
+  const [showException, setShowException] = useState(false);
 
   const openOverlay = () => {
-    setTimeout(() => {
-      setShowOverlay(true);
-    }, 500);
-
-    setTimeout(() => {
-      setShowOverlay(false);
-    }, 1200);
+    if (showException) {
+      setTimeout(() => {
+        setShowOverlay(true);
+      }, 500);
+    }else{
+      setTimeout(() => {
+        setShowOverlay(true);
+      }, 500);
+  
+      setTimeout(() => {
+        setShowOverlay(false);
+      }, 1200);
+    }
   }
 
-  console.log("Show overlay: " + showOverlay);
+  const closeOverlay = () => {
+    setShowOverlay(false);
+  }
   
+  const handleExceptionToggleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setShowException(event.target.checked);
+  };
+
+  const overlay = showException ? <ExceptionOverlay backButton={closeOverlay} /> : <SuccessOverlay />;
+
   const outboundFlightIcon = <OutboundFlightIcon />;
   const calendarIcon = <CalendarIcon />;
   const finIcon = <FinIcon />;
@@ -50,8 +67,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.android}>
-        {showOverlay && <SuccessOverlay />}
-        <ExceptionOverlay />
+        {showOverlay && overlay}
         <Header title="Load Flight" icon="hamburger" />
         <div className={styles.content}>
           <Card>
@@ -133,7 +149,8 @@ export default function Home() {
         </div>
       </div>
       <Scanbar>
-        <ScanbarButton onClick={openOverlay} />
+        <CustomSwitch checked={showException} onChange={handleExceptionToggleChange}/>
+        <ScanbarButton onClick={openOverlay} scanButtonLightException={showException} />
       </Scanbar>
     </main>
   );

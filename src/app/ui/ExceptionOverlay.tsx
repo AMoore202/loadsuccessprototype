@@ -4,6 +4,7 @@ import Text from "./typography/Text";
 import Label from "./typography/Label";
 import LabelledText from "./typography/LabelledText";
 import NavBar from "./NavBar";
+import Button from "./Button";
 
 function AlertIcon() {
     return(
@@ -13,7 +14,11 @@ function AlertIcon() {
     );
 }
 
-export default function ExceptionOverlay() {
+interface ExceptionOverlayProps {
+    backButton: React.MouseEventHandler<HTMLButtonElement>; 
+}
+
+export default function ExceptionOverlay( {backButton}: ExceptionOverlayProps) {
     return(
         <div className={styles.overlay}>
             <Header title="Load Exception" icon="close" showLogo={false} />
@@ -51,7 +56,9 @@ export default function ExceptionOverlay() {
                     </div>
                 </div>
             </div>
-            <NavBar buttonText="BACK" />
+            <NavBar>
+                <Button text="BACK" onClick={backButton} />
+            </NavBar>
         </div>
     );
 }
