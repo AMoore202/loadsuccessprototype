@@ -1,4 +1,5 @@
 :root {
+  --safe-bottom: env(safe-area-inset-bottom);
   /* MobileClient Colours */
   --MC-Primary: #183C73;
   --MC-Black: #000000;
