@@ -5,17 +5,6 @@ interface ButtonProps {
     onClick?: React.MouseEventHandler<HTMLButtonElement>; 
 }
 
-// export default function Button( {text}: ButtonProps ) {
-//     return(
-//         <button className={styles.button}>
-//             <p className={styles.text}>
-//                 {text}
-//             </p>
-//         </button>
-//     );
-// }
-
-
 const Button: React.FC<ButtonProps> = ({ text, onClick }) => {
     return (
         <button className={styles.button} onClick={onClick}>
