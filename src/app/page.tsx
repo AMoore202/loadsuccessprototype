@@ -63,6 +63,10 @@ export default function Home() {
   const bagIcon = <BagIcon />;
   const pieceIcon = <PieceIcon />;
   const emptyCartIcon = <EmptyCartIcon />;
+
+  const safeBottom = getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom');
+  console.log('Safe Bottom:', safeBottom);
+
   
   return (
     <main className={styles.main}>
