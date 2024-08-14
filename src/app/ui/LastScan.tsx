@@ -23,6 +23,7 @@ export default function LastScan({state='initial'}: LastScanProps) {
             <LabelledTextWithIcon 
                 gridStyles={{ gridColumn: '1 / 3', gridRow: '1 / 2' }}
                 icon={circleCheckIcon}
+                largeText={true}
             >
                 <LabelledText gridStyles={{}}>
                     <Label text="TAG NUMBER" />
@@ -66,6 +67,7 @@ export default function LastScan({state='initial'}: LastScanProps) {
             <LabelledTextWithIcon 
                 gridStyles={{ gridColumn: '1 / 3', gridRow: '1 / 2' }}
                 icon={circleAlertIcon}
+                largeText={true}
             >
                 <LabelledText gridStyles={{}}>
                     <Label text="TAG NUMBER" />
