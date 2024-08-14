@@ -30,6 +30,11 @@ export default function Home() {
   const [showOverlay, setShowOverlay] = useState(false);
   const [showException, setShowException] = useState(false);
 
+  const playSuccessBeep = () => {
+    const audio = new Audio("/sounds/SuccessBeep.wav");
+    audio.play();
+  };
+
   const openOverlay = () => {
     if (showException) {
       setTimeout(() => {
@@ -38,6 +43,7 @@ export default function Home() {
     }else{
       setTimeout(() => {
         setShowOverlay(true);
+        playSuccessBeep();
       }, 500);
   
       setTimeout(() => {
