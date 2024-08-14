@@ -11,6 +11,7 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Load Results Prototype",
   description: "Prototype for showing the success and exception flows for loading a bag",
+  formatDetection: { telephone: false },
 };
 
 export default function RootLayout({
@@ -20,9 +21,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <meta name="format-detection" content="telephone=no" />
-      </Head>
       <body className={roboto.className}>{children}</body>
     </html>
   );
