@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, ChangeEvent } from 'react';
+import Head from "next/head";
 import styles from "./page.module.css";
 import { 
   OutboundFlightIcon, 
@@ -32,18 +33,6 @@ export default function Home() {
   const [successBeep, setSuccessBeep] = useState<HTMLAudioElement | null>(null);
   const [exceptionBeep, setExceptionBeep] = useState<HTMLAudioElement | null>(null);
 
-  // useEffect(() => {
-  //   const successAudioFile = new Audio("/sounds/SuccessBeep.wav");
-  //   successAudioFile.preload = "auto";
-  //   setSuccessBeep(successAudioFile);
-  // }, []);
-
-  // useEffect(() => {
-  //   const exceptionAudioFile = new Audio("/sounds/sound_failure.mp3");
-  //   exceptionAudioFile.preload = "auto";
-  //   setExceptionBeep(exceptionAudioFile);
-  // }, []);
-
   useEffect(() => {
     const successAudioFile = new Audio("/sounds/SuccessBeep.wav");
     successAudioFile.preload = "auto";
@@ -54,20 +43,6 @@ export default function Home() {
     setSuccessBeep(successAudioFile);
     setExceptionBeep(exceptionAudioFile);
   }, []);
-
-  // const playSuccessBeep = () => {
-  //   if (successBeep) {
-  //     successBeep.currentTime = 0;
-  //     successBeep.play();
-  //   }
-  // };
-
-  // const playErrorBeep = () => {
-  //   if (exceptionBeep) {
-  //     exceptionBeep.currentTime = 0;
-  //     exceptionBeep.play();
-  //   } 
-  // };
 
   const playSound = (sound: HTMLAudioElement | null) => {
     if (sound) {
@@ -115,91 +90,96 @@ export default function Home() {
   const emptyCartIcon = <EmptyCartIcon />;
   
   return (
-    <main className={styles.main}>
-      <div className={styles.android}>
-        {showOverlay && overlay}
-        <Header title="Load Flight" icon="hamburger" />
-        <div className={styles.content}>
-          <Card>
-            <div className={styles.flightcardcontent}>
-              <LabelledTextWithIcon 
-                gridStyles = {{ gridColumn: '1 / 2', gridRow: '1 / 2' }}
-                icon = {outboundFlightIcon}
-              >
-                <LabelledText gridStyles={{}}>
-                  <Label text="FLIGHT" />
-                  <Text text="ZZ1234" />
-                </LabelledText>
-              </LabelledTextWithIcon>
-              <LabelledTextWithIcon
-                gridStyles = {{ gridColumn: '2 / 2', gridRow: '1 / 2' }}
-                icon = {calendarIcon}
-              >
-                <LabelledText gridStyles={{}}>
-                  <Label text="DEP DATE" />
-                  <Text text="23JUL" />
-                </LabelledText>
-              </LabelledTextWithIcon>
-              <LabelledTextWithIcon
-                gridStyles = {{ gridColumn: '1 / 2', gridRow: '2 / 2' }}
-                icon = {finIcon}
-              >
-                <LabelledText gridStyles={{}}>
-                  <Label text="FIN" />
-                  <Text text="BRK7A" />
-                </LabelledText>
-              </LabelledTextWithIcon>
-              <LabelledTextWithIcon
-                gridStyles = {{ gridColumn: '2 / 2', gridRow: '2 / 2' }}
-                icon = {clockIcon}
-              >
-                <LabelledText gridStyles={{}}>
-                  <Label text="TTD" />
-                  <Text text="7h 17m" />
-                </LabelledText>
-              </LabelledTextWithIcon>
+    <>
+      <Head>
+        <meta name="format-detection" content="telephone=no" />
+      </Head>
+      <main className={styles.main}>
+        <div className={styles.android}>
+          {showOverlay && overlay}
+          <Header title="Load Flight" icon="hamburger" />
+          <div className={styles.content}>
+            <Card>
+              <div className={styles.flightcardcontent}>
+                <LabelledTextWithIcon 
+                  gridStyles = {{ gridColumn: '1 / 2', gridRow: '1 / 2' }}
+                  icon = {outboundFlightIcon}
+                >
+                  <LabelledText gridStyles={{}}>
+                    <Label text="FLIGHT" />
+                    <Text text="ZZ1234" />
+                  </LabelledText>
+                </LabelledTextWithIcon>
+                <LabelledTextWithIcon
+                  gridStyles = {{ gridColumn: '2 / 2', gridRow: '1 / 2' }}
+                  icon = {calendarIcon}
+                >
+                  <LabelledText gridStyles={{}}>
+                    <Label text="DEP DATE" />
+                    <Text text="23JUL" />
+                  </LabelledText>
+                </LabelledTextWithIcon>
+                <LabelledTextWithIcon
+                  gridStyles = {{ gridColumn: '1 / 2', gridRow: '2 / 2' }}
+                  icon = {finIcon}
+                >
+                  <LabelledText gridStyles={{}}>
+                    <Label text="FIN" />
+                    <Text text="BRK7A" />
+                  </LabelledText>
+                </LabelledTextWithIcon>
+                <LabelledTextWithIcon
+                  gridStyles = {{ gridColumn: '2 / 2', gridRow: '2 / 2' }}
+                  icon = {clockIcon}
+                >
+                  <LabelledText gridStyles={{}}>
+                    <Label text="TTD" />
+                    <Text text="7h 17m" />
+                  </LabelledText>
+                </LabelledTextWithIcon>
+              </div>
+            </Card>
+            <div className={styles.bagandcargocards}>
+              <Card>
+                <LabelledTextWithIcon gridStyles={{}} icon={bagIcon} largeText={true}>
+                  <LabelledText gridStyles={{}}>
+                    <Label text ="OK / NOT OK TO LOAD" />
+                    <div className={styles.toloadcounts}>
+                      <Text text="5" size="large" color="success" />
+                      <Text text="/" size="large"/>
+                      <Text text="1" size="large" color="error"/>
+                    </div>
+                  </LabelledText>
+                </LabelledTextWithIcon>
+              </Card>
+              <Card>
+                <LabelledTextWithIcon gridStyles={{}} icon={pieceIcon} largeText={true}>
+                  <LabelledText gridStyles={{}}>
+                    <Label text="OK / NOT OK TO LOAD" />
+                    <div className={styles.toloadcounts}>
+                      <Text text="5" size="large" color="success" />
+                      <Text text="/0" size="large"/>
+                    </div>
+                  </LabelledText>
+                </LabelledTextWithIcon>
+              </Card>
             </div>
-          </Card>
-          <div className={styles.bagandcargocards}>
             <Card>
-              <LabelledTextWithIcon gridStyles={{}} icon={bagIcon} largeText={true}>
-                <LabelledText gridStyles={{}}>
-                  <Label text ="OK / NOT OK TO LOAD" />
-                  <div className={styles.toloadcounts}>
-                    <Text text="5" size="large" color="success" />
-                    <Text text="/" size="large"/>
-                    <Text text="1" size="large" color="error"/>
-                  </div>
-                </LabelledText>
+              <LabelledTextWithIcon gridStyles={{}} icon={emptyCartIcon} largeText={true}>
+                  <LabelledText gridStyles={{}}>
+                    <Label text="ULD / Cart" />
+                    <Text text="BINA" size="large" />
+                  </LabelledText>
               </LabelledTextWithIcon>
             </Card>
-            <Card>
-              <LabelledTextWithIcon gridStyles={{}} icon={pieceIcon} largeText={true}>
-                <LabelledText gridStyles={{}}>
-                  <Label text="OK / NOT OK TO LOAD" />
-                  <div className={styles.toloadcounts}>
-                    <Text text="5" size="large" color="success" />
-                    <Text text="/0" size="large"/>
-                  </div>
-                </LabelledText>
-              </LabelledTextWithIcon>
-            </Card>
+            <LastScan state={lastScan}/>
           </div>
-          <Card>
-            <LabelledTextWithIcon gridStyles={{}} icon={emptyCartIcon} largeText={true}>
-                <LabelledText gridStyles={{}}>
-                  <Label text="ULD / Cart" />
-                  <Text text="BINA" size="large" />
-                </LabelledText>
-            </LabelledTextWithIcon>
-          </Card>
-          <LastScan state={lastScan}/>
         </div>
-      </div>
-      <Scanbar>
-        <CustomSwitch checked={showException} onChange={handleExceptionToggleChange}/>
-        <ScanbarButton onClick={openOverlay} scanButtonLightException={showException} />
-      </Scanbar>
-    </main>
+        <Scanbar>
+          <CustomSwitch checked={showException} onChange={handleExceptionToggleChange}/>
+          <ScanbarButton onClick={openOverlay} scanButtonLightException={showException} />
+        </Scanbar>
+      </main>
+    </>
   );
 }
