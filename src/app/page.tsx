@@ -1,8 +1,7 @@
 "use client";
 
-import { ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import styles from "./page.module.css";
-import { useState } from "react";
 import { 
   OutboundFlightIcon, 
   CalendarIcon,
@@ -29,15 +28,33 @@ import CustomSwitch from './ui/StyledSwitch';
 export default function Home() {
   const [showOverlay, setShowOverlay] = useState(false);
   const [showException, setShowException] = useState(false);
+  const [successBeep, setSuccessBeep] = useState<HTMLAudioElement | null>(null);
+  const [exceptionBeep, setExceptionBeep] = useState<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const successAudioFile = new Audio("/sounds/SuccessBeep.wav");
+    successAudioFile.preload = "auto";
+    setSuccessBeep(successAudioFile);
+  }, []);
+
+  useEffect(() => {
+    const exceptionAudioFile = new Audio("/sounds/sound_failure.mp3");
+    exceptionAudioFile.preload = "auto";
+    setExceptionBeep(exceptionAudioFile);
+  }, []);
 
   const playSuccessBeep = () => {
-    const audio = new Audio("/sounds/SuccessBeep.wav");
-    audio.play();
+    if (successBeep) {
+      successBeep.currentTime = 0;
+      successBeep.play();
+    }
   };
 
   const playErrorBeep = () => {
-    const audio = new Audio("/sounds/sound_failure.mp3");
-    audio.play();
+    if (exceptionBeep) {
+      exceptionBeep.currentTime = 0;
+      exceptionBeep.play();
+    } 
   };
 
   const openOverlay = () => {
