@@ -4,7 +4,12 @@
     align-items: flex-end;
 }
 
-.iconwrapper {
+.iconwrapper-regular {
     width: 2rem;
     height: 2rem;
+}
+
+.iconwrapper-large {
+    width: 2rem;
+    height: 2.2rem;
 }

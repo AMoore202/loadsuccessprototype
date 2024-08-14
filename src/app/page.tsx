@@ -162,7 +162,7 @@ export default function Home() {
           </Card>
           <div className={styles.bagandcargocards}>
             <Card>
-              <LabelledTextWithIcon gridStyles={{}} icon = {bagIcon}>
+              <LabelledTextWithIcon gridStyles={{}} icon={bagIcon} largeText={true}>
                 <LabelledText gridStyles={{}}>
                   <Label text ="OK / NOT OK TO LOAD" />
                   <div className={styles.toloadcounts}>
@@ -174,7 +174,7 @@ export default function Home() {
               </LabelledTextWithIcon>
             </Card>
             <Card>
-              <LabelledTextWithIcon gridStyles={{}} icon = {pieceIcon}>
+              <LabelledTextWithIcon gridStyles={{}} icon={pieceIcon} largeText={true}>
                 <LabelledText gridStyles={{}}>
                   <Label text="OK / NOT OK TO LOAD" />
                   <div className={styles.toloadcounts}>
@@ -186,16 +186,13 @@ export default function Home() {
             </Card>
           </div>
           <Card>
-            <LabelledTextWithIcon gridStyles={{}} icon = {emptyCartIcon}>
+            <LabelledTextWithIcon gridStyles={{}} icon={emptyCartIcon} largeText={true}>
                 <LabelledText gridStyles={{}}>
                   <Label text="ULD / Cart" />
                   <Text text="BINA" size="large" />
                 </LabelledText>
             </LabelledTextWithIcon>
           </Card>
-          {/* <InstructionalText
-            text = "Scan a tag or tap on the button below to scan it with the camera. Swipe the Flight or ULD/Cart cards to change the flight or ULD/Cart."
-          /> */}
           <LastScan state={lastScan}/>
         </div>
       </div>

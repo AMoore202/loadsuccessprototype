@@ -21,8 +21,9 @@ export default function LastScan({state='initial'}: LastScanProps) {
     const successContent = 
         <div className={styles.labelledtextrows}>
             <LabelledTextWithIcon 
-                gridStyles={{ gridColumn: '1 / 3', gridRow: '1 / 2' }}
+                gridStyles={{}}
                 icon={circleCheckIcon}
+                largeText={true}
             >
                 <LabelledText gridStyles={{}}>
                     <Label text="TAG NUMBER" />
@@ -30,7 +31,7 @@ export default function LastScan({state='initial'}: LastScanProps) {
                 </LabelledText>
             </LabelledTextWithIcon>
             <LabelledTextWithIcon 
-                gridStyles={{ gridColumn: '1 / 3', gridRow: '2 / 3' }}
+                gridStyles={{}}
                 icon={null}
             >
                 <LabelledText gridStyles={{}}>
@@ -38,21 +39,23 @@ export default function LastScan({state='initial'}: LastScanProps) {
                     <Text text="CLEMENT/ERNIE" color="success" size="large" fill={true} />
                 </LabelledText>
             </LabelledTextWithIcon>
-            <LabelledTextWithIcon 
-                gridStyles={{ gridColumn: '1 / 2', gridRow: '3 / 4' }}
-                icon={null}
-            >
-                <LabelledText gridStyles={{}}>
-                    <Label text="TYPE" />
-                    <Text text="CHECKED BAG" color="success" fill={true} />
+            <div className={styles.baginfo}>
+                <LabelledTextWithIcon 
+                    gridStyles={{width: '55%'}}
+                    icon={null}
+                >
+                    <LabelledText gridStyles={{}}>
+                        <Label text="TYPE" />
+                        <Text text="CHECKED BAG" color="success" fill={true} />
+                    </LabelledText>
+                </LabelledTextWithIcon>
+                <LabelledText gridStyles={{width: '45%'}}>
+                    <Label text="WEIGHT" />
+                    <Text text="STANDARD" color="success" fill={true} />
                 </LabelledText>
-            </LabelledTextWithIcon>
-            <LabelledText gridStyles={{ gridColumn: '2 / 3', gridRow: '3 / 4' }}>
-                <Label text="WEIGHT" />
-                <Text text="STANDARD" color="success" fill={true} />
-            </LabelledText>
+            </div>
             <LabelledTextWithIcon 
-                gridStyles={{ gridColumn: '1 / 3', gridRow: '4 / 5' }}
+                gridStyles={{}}
                 icon={null}
             >
                 <LabelledText gridStyles={{}}>
@@ -64,8 +67,9 @@ export default function LastScan({state='initial'}: LastScanProps) {
     const exceptionContent = 
         <div className={styles.labelledtextrows}>
             <LabelledTextWithIcon 
-                gridStyles={{ gridColumn: '1 / 3', gridRow: '1 / 2' }}
+                gridStyles={{}}
                 icon={circleAlertIcon}
+                largeText={true}
             >
                 <LabelledText gridStyles={{}}>
                     <Label text="TAG NUMBER" />
@@ -73,7 +77,7 @@ export default function LastScan({state='initial'}: LastScanProps) {
                 </LabelledText>
             </LabelledTextWithIcon>
             <LabelledTextWithIcon 
-                gridStyles={{ gridColumn: '1 / 3', gridRow: '2 / 3' }}
+                gridStyles={{}}
                 icon={null}
             >
                 <LabelledText gridStyles={{}}>
@@ -81,21 +85,23 @@ export default function LastScan({state='initial'}: LastScanProps) {
                     <Text text="CLEMENT/ERNIE" color="error" size="large" fill={true} />
                 </LabelledText>
             </LabelledTextWithIcon>
-            <LabelledTextWithIcon 
-                gridStyles={{ gridColumn: '1 / 2', gridRow: '3 / 4' }}
-                icon={null}
-            >
-                <LabelledText gridStyles={{}}>
-                    <Label text="TYPE" />
-                    <Text text="CHECKED BAG" color="error" fill={true} />
+            <div className={styles.baginfo}>
+                <LabelledTextWithIcon 
+                    gridStyles={{width: '55%'}}
+                    icon={null}
+                >
+                    <LabelledText gridStyles={{}}>
+                        <Label text="TYPE" />
+                        <Text text="CHECKED BAG" color="error" fill={true} />
+                    </LabelledText>
+                </LabelledTextWithIcon>
+                <LabelledText gridStyles={{width: '45%'}}>
+                    <Label text="WEIGHT" />
+                    <Text text="STANDARD" color="error" fill={true} />
                 </LabelledText>
-            </LabelledTextWithIcon>
-            <LabelledText gridStyles={{ gridColumn: '2 / 3', gridRow: '3 / 4' }}>
-                <Label text="WEIGHT" />
-                <Text text="STANDARD" color="error" fill={true} />
-            </LabelledText>
+            </div>
             <LabelledTextWithIcon 
-                gridStyles={{ gridColumn: '1 / 3', gridRow: '4 / 5' }}
+                gridStyles={{}}
                 icon={null}
             >
                 <LabelledText gridStyles={{}}>
