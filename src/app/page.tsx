@@ -35,10 +35,16 @@ export default function Home() {
     audio.play();
   };
 
+  const playErrorBeep = () => {
+    const audio = new Audio("/sounds/sound_failure.mp3");
+    audio.play();
+  };
+
   const openOverlay = () => {
     if (showException) {
       setTimeout(() => {
         setShowOverlay(true);
+        playErrorBeep();
       }, 500);
     }else{
       setTimeout(() => {
