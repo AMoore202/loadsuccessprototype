@@ -29,11 +29,11 @@ export default function ExceptionOverlay( {backButton}: ExceptionOverlayProps) {
                 </div>
                 <div className={styles.cards}>
                     <div className={styles.card}>
-                        <LabelledText>
+                        <LabelledText gridStyles={{}}>
                             <Label text="TAG NUMBER" color="white" />
                             <Text text="0105123456" color="white" />
                         </LabelledText>
-                        <LabelledText>
+                        <LabelledText gridStyles={{}}>
                             <Label text="ULD/CART" color="white" />
                             <Text text="BINA" color="white" />
                         </LabelledText>
@@ -45,11 +45,11 @@ export default function ExceptionOverlay( {backButton}: ExceptionOverlayProps) {
                 <div className={styles.actionsection}>
                     <Text text="Scheduled Flight" size="large" color="white" />
                     <div className={styles.flightdetails}>
-                        <LabelledText>
+                        <LabelledText gridStyles={{}}>
                             <Label text="FLIGHT" color="white"  />
                             <Text text="ZZ0600" color="white" />
                         </LabelledText>
-                        <LabelledText>
+                        <LabelledText gridStyles={{}}>
                             <Label text="DEPARTURE" color="white"  />
                             <Text text="25MAY 16:00L" color="white" />
                         </LabelledText>                       

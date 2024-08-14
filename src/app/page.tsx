@@ -13,7 +13,6 @@ import {
 } from "@/app/ui/Icons";
 import LabelledTextWithIcon from "./ui/LabelledTextWithIcon";
 import Card from "./ui/Card";
-import InstructionalText from "./ui/InstructionalText";
 import LabelledText from "./ui/typography/LabelledText";
 import Label from "./ui/typography/Label";
 import Text from "./ui/typography/Text";
@@ -23,11 +22,13 @@ import ExceptionOverlay from "./ui/ExceptionOverlay";
 import Scanbar from "./ui/scanbar/Scanbar";
 import ScanbarButton from "./ui/scanbar/ScanbarButton";
 import CustomSwitch from './ui/StyledSwitch';
+import LastScan from './ui/LastScan';
 
 
 export default function Home() {
   const [showOverlay, setShowOverlay] = useState(false);
   const [showException, setShowException] = useState(false);
+  const [lastScan, setLastScan] = useState('initial');
   const [successBeep, setSuccessBeep] = useState<HTMLAudioElement | null>(null);
   const [exceptionBeep, setExceptionBeep] = useState<HTMLAudioElement | null>(null);
 
@@ -80,11 +81,13 @@ export default function Home() {
       setTimeout(() => {
         setShowOverlay(true);
         playSound(exceptionBeep);
+        setLastScan('exception');
       }, 500);
     }else{
       setTimeout(() => {
         setShowOverlay(true);
         playSound(successBeep);
+        setLastScan('success');
       }, 500);
   
       setTimeout(() => {
@@ -123,7 +126,7 @@ export default function Home() {
                 gridStyles = {{ gridColumn: '1 / 2', gridRow: '1 / 2' }}
                 icon = {outboundFlightIcon}
               >
-                <LabelledText>
+                <LabelledText gridStyles={{}}>
                   <Label text="FLIGHT" />
                   <Text text="ZZ1234" />
                 </LabelledText>
@@ -132,7 +135,7 @@ export default function Home() {
                 gridStyles = {{ gridColumn: '2 / 2', gridRow: '1 / 2' }}
                 icon = {calendarIcon}
               >
-                <LabelledText>
+                <LabelledText gridStyles={{}}>
                   <Label text="DEP DATE" />
                   <Text text="23JUL" />
                 </LabelledText>
@@ -141,7 +144,7 @@ export default function Home() {
                 gridStyles = {{ gridColumn: '1 / 2', gridRow: '2 / 2' }}
                 icon = {finIcon}
               >
-                <LabelledText>
+                <LabelledText gridStyles={{}}>
                   <Label text="FIN" />
                   <Text text="BRK7A" />
                 </LabelledText>
@@ -150,7 +153,7 @@ export default function Home() {
                 gridStyles = {{ gridColumn: '2 / 2', gridRow: '2 / 2' }}
                 icon = {clockIcon}
               >
-                <LabelledText>
+                <LabelledText gridStyles={{}}>
                   <Label text="TTD" />
                   <Text text="7h 17m" />
                 </LabelledText>
@@ -160,7 +163,7 @@ export default function Home() {
           <div className={styles.bagandcargocards}>
             <Card>
               <LabelledTextWithIcon gridStyles={{}} icon = {bagIcon}>
-                <LabelledText>
+                <LabelledText gridStyles={{}}>
                   <Label text ="OK / NOT OK TO LOAD" />
                   <div className={styles.toloadcounts}>
                     <Text text="5" size="large" color="success" />
@@ -172,7 +175,7 @@ export default function Home() {
             </Card>
             <Card>
               <LabelledTextWithIcon gridStyles={{}} icon = {pieceIcon}>
-                <LabelledText>
+                <LabelledText gridStyles={{}}>
                   <Label text="OK / NOT OK TO LOAD" />
                   <div className={styles.toloadcounts}>
                     <Text text="5" size="large" color="success" />
@@ -184,15 +187,16 @@ export default function Home() {
           </div>
           <Card>
             <LabelledTextWithIcon gridStyles={{}} icon = {emptyCartIcon}>
-                <LabelledText>
+                <LabelledText gridStyles={{}}>
                   <Label text="ULD / Cart" />
                   <Text text="BINA" size="large" />
                 </LabelledText>
             </LabelledTextWithIcon>
           </Card>
-          <InstructionalText
+          {/* <InstructionalText
             text = "Scan a tag or tap on the button below to scan it with the camera. Swipe the Flight or ULD/Cart cards to change the flight or ULD/Cart."
-          />
+          /> */}
+          <LastScan state={lastScan}/>
         </div>
       </div>
       <Scanbar>

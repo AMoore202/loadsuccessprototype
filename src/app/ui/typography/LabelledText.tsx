@@ -1,8 +1,13 @@
 import styles from "@/app/ui/typography/LabelledText.module.css"
 
-export default function LabelledText({ children }: { children: React.ReactNode }) {
+interface LabelledTextProps {
+    gridStyles: React.CSSProperties;
+    children: React.ReactNode;
+}
+
+export default function LabelledText({ gridStyles, children }: LabelledTextProps) {
     return(
-        <div className={styles.labelledtext}>
+        <div style={gridStyles} className={styles.labelledtext}>
             {children}
         </div>
     );
