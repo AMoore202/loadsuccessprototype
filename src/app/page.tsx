@@ -31,42 +31,60 @@ export default function Home() {
   const [successBeep, setSuccessBeep] = useState<HTMLAudioElement | null>(null);
   const [exceptionBeep, setExceptionBeep] = useState<HTMLAudioElement | null>(null);
 
+  // useEffect(() => {
+  //   const successAudioFile = new Audio("/sounds/SuccessBeep.wav");
+  //   successAudioFile.preload = "auto";
+  //   setSuccessBeep(successAudioFile);
+  // }, []);
+
+  // useEffect(() => {
+  //   const exceptionAudioFile = new Audio("/sounds/sound_failure.mp3");
+  //   exceptionAudioFile.preload = "auto";
+  //   setExceptionBeep(exceptionAudioFile);
+  // }, []);
+
   useEffect(() => {
     const successAudioFile = new Audio("/sounds/SuccessBeep.wav");
     successAudioFile.preload = "auto";
-    setSuccessBeep(successAudioFile);
-  }, []);
 
-  useEffect(() => {
     const exceptionAudioFile = new Audio("/sounds/sound_failure.mp3");
     exceptionAudioFile.preload = "auto";
+
+    setSuccessBeep(successAudioFile);
     setExceptionBeep(exceptionAudioFile);
   }, []);
 
-  const playSuccessBeep = () => {
-    if (successBeep) {
-      successBeep.currentTime = 0;
-      successBeep.play();
-    }
-  };
+  // const playSuccessBeep = () => {
+  //   if (successBeep) {
+  //     successBeep.currentTime = 0;
+  //     successBeep.play();
+  //   }
+  // };
 
-  const playErrorBeep = () => {
-    if (exceptionBeep) {
-      exceptionBeep.currentTime = 0;
-      exceptionBeep.play();
-    } 
+  // const playErrorBeep = () => {
+  //   if (exceptionBeep) {
+  //     exceptionBeep.currentTime = 0;
+  //     exceptionBeep.play();
+  //   } 
+  // };
+
+  const playSound = (sound: HTMLAudioElement | null) => {
+    if (sound) {
+      sound.currentTime = 0;
+      sound.play();
+    }
   };
 
   const openOverlay = () => {
     if (showException) {
       setTimeout(() => {
         setShowOverlay(true);
-        playErrorBeep();
+        playSound(exceptionBeep);
       }, 500);
     }else{
       setTimeout(() => {
         setShowOverlay(true);
-        playSuccessBeep();
+        playSound(successBeep);
       }, 500);
   
       setTimeout(() => {
