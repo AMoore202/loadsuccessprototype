@@ -19,7 +19,7 @@ export default function Text({ text, fill=false, size = 'regular', color = 'blac
         : styles['text-black'];
 
     return(
-        <p className={`${styles.text} ${fillClass} ${colorClass} ${sizeClass}`}>
+        <p className={`${fillClass} ${colorClass} ${sizeClass}`}>
             {text}
         </p>
     );
