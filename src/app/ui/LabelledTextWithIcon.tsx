@@ -1,14 +1,12 @@
 import styles from "@/app/ui/LabelledTextWithIcon.module.css";
 
-export default function LabelledTextWithIcon({
-    gridStyles,
-    icon, 
-    children
-} : {
-    gridStyles: React.CSSProperties,
-    icon: React.ReactNode,
-    children: React.ReactNode,
-} ) {
+interface LabelledTextWithIconProps {
+    gridStyles: React.CSSProperties;
+    icon: React.ReactNode | null;
+    children: React.ReactNode;
+}
+
+export default function LabelledTextWithIcon({gridStyles, icon, children}: LabelledTextWithIconProps) {
     return(
         <div style={gridStyles} className={styles.labelledtextwithicon}>
             <div className={styles.iconwrapper}>{icon}</div>
