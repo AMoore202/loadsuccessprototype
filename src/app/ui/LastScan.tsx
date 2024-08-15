@@ -60,7 +60,7 @@ export default function LastScan({state='initial'}: LastScanProps) {
             >
                 <LabelledText gridStyles={{}}>
                     <Label text="RESULT" />
-                    <Text text="Successfully loaded: Load exception overridden" color="success" fill={true} />
+                    <Text text="Successfully loaded" color="success" fill={true} />
                 </LabelledText>
             </LabelledTextWithIcon> 
         </div>
