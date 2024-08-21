@@ -1,4 +1,4 @@
-import styles from "@/app/ui/InstructionalText.module.css"
+import styles from "./InstructionalText.module.css"
 
 export default function InstructionalText({ text }: { text: string }) {
     return(

@@ -1,30 +1,15 @@
 "use client";
 
 import { useState, useEffect, ChangeEvent } from 'react';
-import Head from "next/head";
 import styles from "./page.module.css";
-import { 
-  OutboundFlightIcon, 
-  CalendarIcon,
-  FinIcon,
-  ClockIcon,
-  BagIcon,
-  PieceIcon,
-  EmptyCartIcon,
-} from "@/app/ui/Icons";
-import LabelledTextWithIcon from "./ui/LabelledTextWithIcon";
-import Card from "./ui/Card";
-import LabelledText from "./ui/typography/LabelledText";
-import Label from "./ui/typography/Label";
-import Text from "./ui/typography/Text";
-import Header from "./ui/Header"
-import SuccessOverlay from "./ui/SuccessOverlay";
-import ExceptionOverlay from "./ui/ExceptionOverlay";
+import Header from "./ui/android/Header"
+import SuccessOverlay from "./ui/loadflight/SuccessOverlay";
+import ExceptionOverlay from "./ui/loadflight/ExceptionOverlay";
 import Scanbar from "./ui/scanbar/Scanbar";
 import ScanbarButton from "./ui/scanbar/ScanbarButton";
-import CustomSwitch from './ui/StyledSwitch';
-import LastScan from './ui/LastScan';
-
+import CustomSwitch from './ui/scanbar/StyledSwitch';
+import LastScan from './ui/loadflight/LastScan';
+import LoadFlightCards from './ui/loadflight/LoadFlightCards';
 
 export default function Home() {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -80,14 +65,6 @@ export default function Home() {
   };
 
   const overlay = showException ? <ExceptionOverlay backButton={closeOverlay} /> : <SuccessOverlay />;
-
-  const outboundFlightIcon = <OutboundFlightIcon />;
-  const calendarIcon = <CalendarIcon />;
-  const finIcon = <FinIcon />;
-  const clockIcon = <ClockIcon />;
-  const bagIcon = <BagIcon />;
-  const pieceIcon = <PieceIcon />;
-  const emptyCartIcon = <EmptyCartIcon />;
   
   return (
     <main className={styles.main}>
@@ -95,79 +72,7 @@ export default function Home() {
         {showOverlay && overlay}
         <Header title="Load Flight" icon="hamburger" />
         <div className={styles.content}>
-          <Card>
-            <div className={styles.flightcardcontent}>
-              <LabelledTextWithIcon 
-                gridStyles = {{ gridColumn: '1 / 2', gridRow: '1 / 2' }}
-                icon = {outboundFlightIcon}
-              >
-                <LabelledText gridStyles={{}}>
-                  <Label text="FLIGHT" />
-                  <Text text="ZZ1234" />
-                </LabelledText>
-              </LabelledTextWithIcon>
-              <LabelledTextWithIcon
-                gridStyles = {{ gridColumn: '2 / 2', gridRow: '1 / 2' }}
-                icon = {calendarIcon}
-              >
-                <LabelledText gridStyles={{}}>
-                  <Label text="DEP DATE" />
-                  <Text text="23JUL" />
-                </LabelledText>
-              </LabelledTextWithIcon>
-              <LabelledTextWithIcon
-                gridStyles = {{ gridColumn: '1 / 2', gridRow: '2 / 2' }}
-                icon = {finIcon}
-              >
-                <LabelledText gridStyles={{}}>
-                  <Label text="FIN" />
-                  <Text text="BRK7A" />
-                </LabelledText>
-              </LabelledTextWithIcon>
-              <LabelledTextWithIcon
-                gridStyles = {{ gridColumn: '2 / 2', gridRow: '2 / 2' }}
-                icon = {clockIcon}
-              >
-                <LabelledText gridStyles={{}}>
-                  <Label text="TTD" />
-                  <Text text="7h 17m" />
-                </LabelledText>
-              </LabelledTextWithIcon>
-            </div>
-          </Card>
-          <div className={styles.bagandcargocards}>
-            <Card>
-              <LabelledTextWithIcon gridStyles={{}} icon={bagIcon} largeText={true}>
-                <LabelledText gridStyles={{}}>
-                  <Label text ="OK / NOT OK TO LOAD" />
-                  <div className={styles.toloadcounts}>
-                    <Text text="5" size="large" color="success" />
-                    <Text text="/" size="large"/>
-                    <Text text="1" size="large" color="error"/>
-                  </div>
-                </LabelledText>
-              </LabelledTextWithIcon>
-            </Card>
-            <Card>
-              <LabelledTextWithIcon gridStyles={{}} icon={pieceIcon} largeText={true}>
-                <LabelledText gridStyles={{}}>
-                  <Label text="OK / NOT OK TO LOAD" />
-                  <div className={styles.toloadcounts}>
-                    <Text text="5" size="large" color="success" />
-                    <Text text="/0" size="large"/>
-                  </div>
-                </LabelledText>
-              </LabelledTextWithIcon>
-            </Card>
-          </div>
-          <Card>
-            <LabelledTextWithIcon gridStyles={{}} icon={emptyCartIcon} largeText={true}>
-                <LabelledText gridStyles={{}}>
-                  <Label text="ULD / Cart" />
-                  <Text text="BINA" size="large" />
-                </LabelledText>
-            </LabelledTextWithIcon>
-          </Card>
+          <LoadFlightCards />
           <LastScan state={lastScan}/>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import styles from "@/app/ui/Card.module.css"
+import styles from "./Card.module.css"
 
 export default function Card({ children }: { children: React.ReactNode }) {
     return(

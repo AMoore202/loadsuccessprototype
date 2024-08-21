@@ -1,4 +1,4 @@
-import styles from "@/app/ui/NavBar.module.css";
+import styles from "./NavBar.module.css";
 
 interface NavBarProps {
     children: React.ReactNode;

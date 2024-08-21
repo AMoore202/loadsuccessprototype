@@ -1,3 +1,16 @@
+.label {
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.label-primary {
+    color: var(--MC-Primary);
+}
+
+.label-white {
+    color: var(--MC-White);
+}
+
 .text-fill {
     width: 100%;
 }
@@ -26,4 +39,10 @@
 .text-large {
     font-size: 1.875rem;
     font-weight: 700;
+}
+
+.pagetitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--MC-White);
 }

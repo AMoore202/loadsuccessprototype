@@ -1,10 +1,9 @@
-import styles from "@/app/ui/ExceptionOverlay.module.css";
-import Header from "./Header";
-import Text from "./typography/Text";
-import Label from "./typography/Label";
-import LabelledText from "./typography/LabelledText";
-import NavBar from "./NavBar";
-import Button from "./Button";
+import styles from "./ExceptionOverlay.module.css";
+import Header from "../android/Header";
+import { Label, Text } from "../android/Typography";
+import LabelledText from "../android/LabelledText";
+import NavBar from "../android/NavBar";
+import Button from "../android/Button";
 
 function AlertIcon() {
     return(
@@ -29,11 +28,11 @@ export default function ExceptionOverlay( {backButton}: ExceptionOverlayProps) {
                 </div>
                 <div className={styles.cards}>
                     <div className={styles.card}>
-                        <LabelledText gridStyles={{}}>
+                        <LabelledText gridStyles={{}} showIcon={false} icon={null}>
                             <Label text="TAG NUMBER" color="white" />
                             <Text text="0105123456" color="white" />
                         </LabelledText>
-                        <LabelledText gridStyles={{}}>
+                        <LabelledText gridStyles={{}} showIcon={false} icon={null}>
                             <Label text="ULD/CART" color="white" />
                             <Text text="BINA" color="white" />
                         </LabelledText>
@@ -45,11 +44,11 @@ export default function ExceptionOverlay( {backButton}: ExceptionOverlayProps) {
                 <div className={styles.actionsection}>
                     <Text text="Scheduled Flight" size="large" color="white" />
                     <div className={styles.flightdetails}>
-                        <LabelledText gridStyles={{}}>
+                        <LabelledText gridStyles={{}} showIcon={false} icon={null}>
                             <Label text="FLIGHT" color="white"  />
                             <Text text="ZZ0600" color="white" />
                         </LabelledText>
-                        <LabelledText gridStyles={{}}>
+                        <LabelledText gridStyles={{}} showIcon={false} icon={null}>
                             <Label text="DEPARTURE" color="white"  />
                             <Text text="25MAY 16:00L" color="white" />
                         </LabelledText>                       
