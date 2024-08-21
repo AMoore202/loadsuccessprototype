@@ -1,5 +1,5 @@
-import styles from "@/app/ui/SuccessOverlay.module.css";
-import Header from "./Header";
+import styles from "./SuccessOverlay.module.css";
+import Header from "../android/Header";
 
 
 function CircleIcon() {

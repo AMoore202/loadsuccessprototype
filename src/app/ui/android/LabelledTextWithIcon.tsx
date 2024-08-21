@@ -1,4 +1,4 @@
-import styles from "@/app/ui/LabelledTextWithIcon.module.css";
+import styles from "./LabelledTextWithIcon.module.css";
 
 interface LabelledTextWithIconProps {
     gridStyles: React.CSSProperties;

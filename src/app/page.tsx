@@ -11,19 +11,19 @@ import {
   BagIcon,
   PieceIcon,
   EmptyCartIcon,
-} from "@/app/ui/Icons";
-import LabelledTextWithIcon from "./ui/LabelledTextWithIcon";
-import Card from "./ui/Card";
-import LabelledText from "./ui/typography/LabelledText";
-import Label from "./ui/typography/Label";
-import Text from "./ui/typography/Text";
-import Header from "./ui/Header"
-import SuccessOverlay from "./ui/SuccessOverlay";
-import ExceptionOverlay from "./ui/ExceptionOverlay";
+} from "@/app/ui/android/Icons";
+import LabelledTextWithIcon from "./ui/android/LabelledTextWithIcon";
+import Card from "./ui/android/Card";
+import LabelledText from "./ui/android/typography/LabelledText";
+import Label from "./ui/android/typography/Label";
+import Text from "./ui/android/typography/Text";
+import Header from "./ui/android/Header"
+import SuccessOverlay from "./ui/loadflight/SuccessOverlay";
+import ExceptionOverlay from "./ui/loadflight/ExceptionOverlay";
 import Scanbar from "./ui/scanbar/Scanbar";
 import ScanbarButton from "./ui/scanbar/ScanbarButton";
-import CustomSwitch from './ui/StyledSwitch';
-import LastScan from './ui/LastScan';
+import CustomSwitch from './ui/scanbar/StyledSwitch';
+import LastScan from './ui/loadflight/LastScan';
 
 
 export default function Home() {

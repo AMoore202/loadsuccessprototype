@@ -1,10 +1,10 @@
-import styles from "@/app/ui/ExceptionOverlay.module.css";
-import Header from "./Header";
-import Text from "./typography/Text";
-import Label from "./typography/Label";
-import LabelledText from "./typography/LabelledText";
-import NavBar from "./NavBar";
-import Button from "./Button";
+import styles from "./ExceptionOverlay.module.css";
+import Header from "../android/Header";
+import Text from "../android/typography/Text";
+import Label from "../android/typography/Label";
+import LabelledText from "../android/typography/LabelledText";
+import NavBar from "../android/NavBar";
+import Button from "../android/Button";
 
 function AlertIcon() {
     return(

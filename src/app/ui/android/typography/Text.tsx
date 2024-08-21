@@ -1,4 +1,4 @@
-import styles from "@/app/ui/typography/Text.module.css";
+import styles from "./Text.module.css";
 
 interface TextProps {
     text: string;

@@ -1,4 +1,4 @@
-import styles from "@/app/ui/typography/LabelledText.module.css"
+import styles from "./LabelledText.module.css"
 
 interface LabelledTextProps {
     gridStyles: React.CSSProperties;

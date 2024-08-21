@@ -1,4 +1,4 @@
-import styles from "@/app/ui/Button.module.css";
+import styles from "./Button.module.css";
 
 interface ButtonProps {
     text: string;

@@ -1,10 +1,10 @@
-import styles from "@/app/ui/LastScan.module.css";
-import LabelledTextWithIcon from "./LabelledTextWithIcon";
-import LabelledText from "./typography/LabelledText";
-import Label from "./typography/Label";
-import Text from "./typography/Text";
-import { CircleCheckIcon, CircleAlertIcon } from "@/app/ui/Icons";
-import InstructionalText from "./InstructionalText";
+import styles from "./LastScan.module.css";
+import LabelledTextWithIcon from "../android/LabelledTextWithIcon";
+import LabelledText from "../android/typography/LabelledText";
+import Label from "../android/typography/Label";
+import Text from "../android/typography/Text";
+import { CircleCheckIcon, CircleAlertIcon } from "../android/Icons";
+import InstructionalText from "../android/InstructionalText";
 
 interface LastScanProps {
     state: string;

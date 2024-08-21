@@ -1,4 +1,4 @@
-import styles from "@/app/ui/typography/Label.module.css";
+import styles from "./Label.module.css";
 
 interface LabelProps {
     text: string;

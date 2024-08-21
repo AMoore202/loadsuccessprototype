@@ -1,4 +1,4 @@
-import styles from "@/app/ui/Header.module.css";
+import styles from "./Header.module.css";
 import { HamburgerMenuIcon, CloseMenuIcon } from "./Icons";
 import PageTitle from "./typography/PageTitle";
 import BrockLogo from "./BrockLogo";

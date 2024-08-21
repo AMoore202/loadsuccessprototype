@@ -1,4 +1,4 @@
-import styles from "@/app/ui/typography/PageTitle.module.css";
+import styles from "./PageTitle.module.css";
 
 export default function PageTitle({ text } : { text: string }) {
     return(
