@@ -1,6 +1,6 @@
 import styles from "./Header.module.css";
 import { HamburgerMenuIcon, CloseMenuIcon } from "./Icons";
-import PageTitle from "./typography/PageTitle";
+import { PageTitle } from "./Typography";
 import BrockLogo from "./BrockLogo";
 
 interface HeaderProps {

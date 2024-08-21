@@ -2,6 +2,13 @@
     display: flex;
     gap: 0.25rem;
     align-items: flex-end;
+    width: 100%;
+}
+
+.labelledtext {
+    display: flex;
+    flex-direction: column;
+    width: 100%
 }
 
 .iconwrapper-regular {
