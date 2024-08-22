@@ -24,6 +24,48 @@ function AlertIcon() {
   );
 }
 
+interface ActionContentProps {
+  type?: "scheduledFlight" | "instructions" | "recommendedContainer";
+}
+
+function ActionContent({ type = "scheduledFlight" }: ActionContentProps) {
+  const scheduledFlightContent = (
+    <div className={styles.actionsection}>
+      <Text text="Scheduled Flight" size="large" color="white" />
+      <div className={styles.flightdetails}>
+        <LabelledText gridStyles={{}} showIcon={false} icon={null}>
+          <Label text="FLIGHT" color="white" />
+          <Text text="ZZ0600" color="white" />
+        </LabelledText>
+        <LabelledText gridStyles={{}} showIcon={false} icon={null}>
+          <Label text="DEPARTURE" color="white" />
+          <Text text="25MAY 16:00L" color="white" />
+        </LabelledText>
+      </div>
+    </div>
+  );
+  const instructionsContent = (
+    <div className={styles.actionsection}>
+      <Text text="Instructions" size="large" color="white" />
+      <Text text="{airline provided instruction}" color="white" />
+    </div>
+  );
+  const recommendedContainerContent = (
+    <div className={styles.actionsection}>
+      <Text text="Recommended" size="large" color="white" />
+      <Text text="AKE00000R7, AKE11111R7" color="white" />
+    </div>
+  );
+  const actionContent =
+    type === "instructions"
+      ? instructionsContent
+      : type === "recommendedContainer"
+      ? recommendedContainerContent
+      : scheduledFlightContent;
+
+  return actionContent;
+}
+
 interface ExceptionOverlayProps {
   backButton: React.MouseEventHandler<HTMLButtonElement>;
   exception?:
@@ -71,6 +113,137 @@ export default function ExceptionOverlay({
       ? "STOPPED BAG"
       : "WRONG FLIGHT";
 
+  const wrongContainerCategoryCard = (
+    <div className={styles.card}>
+      <div className={styles.cardcol}>
+        <Text
+          text="Bag is not compatible with ULD/Cart category"
+          color="white"
+        />
+        <div className={styles.cardrow}>
+          <LabelledText gridStyles={{}} showIcon={false} icon={null}>
+            <Label text="BAG CATEGORY" color="white" />
+            <Text text="BC" color="white" />
+          </LabelledText>
+          <LabelledText gridStyles={{}} showIcon={false} icon={null}>
+            <Label text="ULD/CART CATEGORY" color="white" />
+            <Text text="BC" color="white" />
+          </LabelledText>
+        </div>
+      </div>
+    </div>
+  );
+  const wrongContainerDestinationCard = (
+    <div className={styles.card}>
+      <div className={styles.cardcol}>
+        <Text text="Bag is not compatible with ULD destination" color="white" />
+        <div className={styles.cardrow}>
+          <LabelledText gridStyles={{}} showIcon={false} icon={null}>
+            <Label text="BAG DESTINATION" color="white" />
+            <Text text="DEN" color="white" />
+          </LabelledText>
+          <LabelledText gridStyles={{}} showIcon={false} icon={null}>
+            <Label text="ULD/Cart Destination" color="white" />
+            <Text text="DFW" color="white" />
+          </LabelledText>
+        </div>
+      </div>
+    </div>
+  );
+  const containerFullCountCard = (
+    <div className={styles.card}>
+      <div className={styles.cardcol}>
+        <Text text="ULD/Cart has a full count" color="white" />
+        <div className={styles.cardrow}>
+          <LabelledText gridStyles={{}} showIcon={false} icon={null}>
+            <Label text="BAG COUNT" color="white" />
+            <Text text="1" color="white" />
+          </LabelledText>
+          <LabelledText gridStyles={{}} showIcon={false} icon={null}>
+            <Label text="LOADED COUNT" color="white" />
+            <Text text="5/5" color="white" />
+          </LabelledText>
+        </div>
+      </div>
+    </div>
+  );
+  const containerFullWeightCard = (
+    <div className={styles.card}>
+      <div className={styles.cardcol}>
+        <Text text="Bag is too heavy to fit in ULD/Cart" color="white" />
+        <div className={styles.cardrow}>
+          <LabelledText gridStyles={{}} showIcon={false} icon={null}>
+            <Label text="BAG WEIGHT (LBS)" color="white" />
+            <Text text="100" color="white" />
+          </LabelledText>
+          <LabelledText gridStyles={{}} showIcon={false} icon={null}>
+            <Label text="LOADED WEIGHT (LBS)" color="white" />
+            <Text text="200/250" color="white" />
+          </LabelledText>
+        </div>
+      </div>
+    </div>
+  );
+  const wrongFlightCard = (
+    <div className={styles.card}>
+      <Text text="Bag isn't scheduled for ZZ1234" color="white" />
+    </div>
+  );
+  const flightCancelledCard = (
+    <div className={styles.card}>
+      <Text text="Flight ZZ1234 is cancelled" color="white" />
+    </div>
+  );
+  const flightClosedCard = (
+    <div className={styles.card}>
+      <Text text="Flight ZZ1234 is closed" color="white" />
+    </div>
+  );
+  const stoppedBagCard = (
+    <div className={styles.card}>
+      <LabelledText gridStyles={{}} showIcon={false} icon={null}>
+        <Label text="REASON" color="white" />
+        <Text text="Medical Recall" color="white" />
+      </LabelledText>
+    </div>
+  );
+
+  const exceptionSpecificCard =
+    exception === "wrongContainerCategory"
+      ? wrongContainerCategoryCard
+      : exception === "wrongContainerDestination"
+      ? wrongContainerDestinationCard
+      : exception === "containerFullCount"
+      ? containerFullCountCard
+      : exception === "containerFullWeight"
+      ? containerFullWeightCard
+      : exception === "wrongFlight"
+      ? wrongFlightCard
+      : exception === "flightCancelled"
+      ? flightCancelledCard
+      : exception === "flightClosed"
+      ? flightClosedCard
+      : exception === "stoppedBag"
+      ? stoppedBagCard
+      : null;
+
+  const actionContent =
+    exception === "wrongContainerCategory" ||
+    exception === "wrongContainerDestination" ||
+    exception === "containerFullCount" ||
+    exception === "containerFullWeight" ||
+    exception === "containerClosed" ? (
+      <ActionContent type="recommendedContainer" />
+    ) : exception === "inactive" ||
+      exception === "standby" ||
+      exception === "notAuthorized" ||
+      exception === "screeningRequired" ||
+      exception === "stoppedBag" ? (
+      <ActionContent type="instructions" />
+    ) : (
+      <ActionContent type="scheduledFlight" />
+    );
+
   return (
     <div className={styles.overlay}>
       <Header title="Load Exception" icon="close" showLogo={false} />
@@ -87,30 +260,12 @@ export default function ExceptionOverlay({
             </LabelledText>
             <LabelledText gridStyles={{}} showIcon={false} icon={null}>
               <Label text="ULD/CART" color="white" />
-              <Text text="BINA" color="white" />
+              <Text text="AKE12345R7" color="white" />
             </LabelledText>
           </div>
-          <div className={styles.card}>
-            <Text
-              text="Bag isn't scheduled for ZZ1234"
-              fill={true}
-              color="white"
-            />
-          </div>
+          {exceptionSpecificCard}
         </div>
-        <div className={styles.actionsection}>
-          <Text text="Scheduled Flight" size="large" color="white" />
-          <div className={styles.flightdetails}>
-            <LabelledText gridStyles={{}} showIcon={false} icon={null}>
-              <Label text="FLIGHT" color="white" />
-              <Text text="ZZ0600" color="white" />
-            </LabelledText>
-            <LabelledText gridStyles={{}} showIcon={false} icon={null}>
-              <Label text="DEPARTURE" color="white" />
-              <Text text="25MAY 16:00L" color="white" />
-            </LabelledText>
-          </div>
-        </div>
+        {actionContent}
       </div>
       <NavBar>
         <Button text="BACK" onClick={backButton} />

@@ -57,6 +57,19 @@
     border-top: 1px solid var(--MC-Grey);
 }
 
+.cardcol {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+}
+
+.cardrow {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}
+
 .text {
     color: var(--MC-White);
     text-align: center;
