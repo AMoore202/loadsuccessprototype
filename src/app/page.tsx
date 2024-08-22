@@ -8,6 +8,7 @@ import ExceptionOverlay from "./ui/loadflight/ExceptionOverlay";
 import Scanbar from "./ui/scanbar/Scanbar";
 import ScanbarButton from "./ui/scanbar/ScanbarButton";
 import CustomSwitch from "./ui/scanbar/StyledSwitch";
+import ConfigOverlay from "./ui/scanbar/ConfigOverlay";
 import LastScan from "./ui/loadflight/LastScan";
 import LoadFlightCards from "./ui/loadflight/LoadFlightCards";
 
@@ -80,6 +81,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.android}>
+        <ConfigOverlay />
         {showOverlay && overlay}
         <Header title="Load Flight" icon="hamburger" />
         <div className={styles.content}>
