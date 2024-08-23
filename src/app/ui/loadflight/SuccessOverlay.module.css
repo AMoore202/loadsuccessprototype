@@ -21,8 +21,22 @@
 }
 
 .text {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.25rem;
+}
+
+.loadedtext {
     color: var(--MC-White);
     text-align: center;
     font-size: 5rem;
+    font-weight: 700;
+}
+
+.containertext {
+    color: var(--MC-White);
+    text-align: center;
+    font-size: 3rem;
     font-weight: 700;
 }
