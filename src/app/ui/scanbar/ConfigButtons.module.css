@@ -1,0 +1,16 @@
+.openbutton {
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    background: none;
+    border-style: none;
+    padding-bottom: 0.625rem;
+}
+
+.closebutton {
+    display: flex;
+    padding: 0.25rem;
+    align-items: center;
+    background: none;
+    border-style: none;
+}

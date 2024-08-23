@@ -1,18 +1,25 @@
-import { useState } from "react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-export default function ExceptionSelect() {
-  const [selectedValue, setSelectedValue] = useState("");
+interface ExceptionSelectProps {
+  value: string;
+  onChange: (event: SelectChangeEvent<string>) => void;
+}
 
-  const handleChange = (event: SelectChangeEvent<string>) => {
-    setSelectedValue(event.target.value);
-  };
+export default function ExceptionSelect({
+  value,
+  onChange,
+}: ExceptionSelectProps) {
+  // const [selectedValue, setSelectedValue] = useState("");
+
+  // const handleChange = (event: SelectChangeEvent<string>) => {
+  //   setSelectedValue(event.target.value);
+  // };
 
   return (
-    <FormControl fullWidth variant="filled">
+    <FormControl fullWidth variant="filled" className="customSelect">
       <InputLabel
         id="dropdown-label"
         sx={{
@@ -26,8 +33,8 @@ export default function ExceptionSelect() {
       </InputLabel>
       <Select
         labelId="dropdown-label"
-        value={selectedValue}
-        onChange={handleChange}
+        value={value}
+        onChange={onChange}
         label="Exception"
         disableUnderline
         sx={{
@@ -43,13 +50,14 @@ export default function ExceptionSelect() {
           "& .MuiMenuItem-root": {
             color: "#CBCBCB",
           },
-          "& .MuiFilledInput-root": {
-            backgroundColor: "#1A1A1A",
+          "&.customSelect .MuiFilledInput-root": {
+            // Not working
+            backgroundColor: "#000000",
             "&.Mui-focused": {
-              backgroundColor: "#1A1A1A",
+              backgroundColor: "#000000",
             },
             "&:hover": {
-              backgroundColor: "#1A1A1A",
+              backgroundColor: "#000000",
             },
           },
         }}

@@ -8,3 +8,10 @@
     z-index: 1001;
     padding-bottom: calc(var(--safe-bottom) + 0.7rem);
 }
+
+.leftcontent {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+}

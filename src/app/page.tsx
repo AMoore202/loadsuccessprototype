@@ -8,9 +8,26 @@ import ExceptionOverlay from "./ui/loadflight/ExceptionOverlay";
 import Scanbar from "./ui/scanbar/Scanbar";
 import ScanbarButton from "./ui/scanbar/ScanbarButton";
 import CustomSwitch from "./ui/scanbar/StyledSwitch";
+import { OpenConfigButton } from "./ui/scanbar/ConfigButtons";
 import ConfigOverlay from "./ui/scanbar/ConfigOverlay";
 import LastScan from "./ui/loadflight/LastScan";
 import LoadFlightCards from "./ui/loadflight/LoadFlightCards";
+import { SelectChangeEvent } from "@mui/material/Select";
+
+type ExceptionType =
+  | "wrongFlight"
+  | "wrongContainerCategory"
+  | "wrongContainerDestination"
+  | "containerFullCount"
+  | "containerFullWeight"
+  | "containerClosed"
+  | "flightCancelled"
+  | "flightClosed"
+  | "inactive"
+  | "standby"
+  | "notAuthorized"
+  | "screeningRequired"
+  | "stoppedBag";
 
 export default function Home() {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -20,6 +37,9 @@ export default function Home() {
   const [exceptionBeep, setExceptionBeep] = useState<HTMLAudioElement | null>(
     null
   );
+  const [showConfigOverlay, setShowConfigOverlay] = useState(false);
+  const [selectedException, setSelectedException] =
+    useState<ExceptionType>("wrongFlight");
 
   useEffect(() => {
     const successAudioFile = new Audio("/sounds/SuccessBeep.wav");
@@ -40,6 +60,7 @@ export default function Home() {
   };
 
   const openOverlay = () => {
+    setShowConfigOverlay(false);
     if (showException) {
       setTimeout(() => {
         setShowOverlay(true);
@@ -70,18 +91,29 @@ export default function Home() {
   };
 
   const overlay = showException ? (
-    <ExceptionOverlay
-      backButton={closeOverlay}
-      exception="wrongContainerCategory"
-    />
+    <ExceptionOverlay backButton={closeOverlay} exception={selectedException} />
   ) : (
     <SuccessOverlay />
   );
 
+  const toggleConfigOverlay = () => {
+    setShowConfigOverlay(!showConfigOverlay);
+  };
+
+  const handleExceptionSelectionChange = (event: SelectChangeEvent<string>) => {
+    setSelectedException(event.target.value as ExceptionType);
+  };
+
   return (
     <main className={styles.main}>
       <div className={styles.android}>
-        <ConfigOverlay />
+        {showConfigOverlay && (
+          <ConfigOverlay
+            closeButton={toggleConfigOverlay}
+            exceptionInputSelection={selectedException}
+            exceptionInputChange={handleExceptionSelectionChange}
+          />
+        )}
         {showOverlay && overlay}
         <Header title="Load Flight" icon="hamburger" />
         <div className={styles.content}>
@@ -90,6 +122,7 @@ export default function Home() {
         </div>
       </div>
       <Scanbar>
+        <OpenConfigButton onClick={toggleConfigOverlay} />
         <CustomSwitch
           checked={showException}
           onChange={handleExceptionToggleChange}

@@ -186,17 +186,17 @@ export default function ExceptionOverlay({
   );
   const wrongFlightCard = (
     <div className={styles.card}>
-      <Text text="Bag isn't scheduled for ZZ1234" color="white" />
+      <Text text="Bag isn't scheduled for ZZ1234" color="white" fill={true} />
     </div>
   );
   const flightCancelledCard = (
     <div className={styles.card}>
-      <Text text="Flight ZZ1234 is cancelled" color="white" />
+      <Text text="Flight ZZ1234 is cancelled" color="white" fill={true} />
     </div>
   );
   const flightClosedCard = (
     <div className={styles.card}>
-      <Text text="Flight ZZ1234 is closed" color="white" />
+      <Text text="Flight ZZ1234 is closed" color="white" fill={true} />
     </div>
   );
   const stoppedBagCard = (
