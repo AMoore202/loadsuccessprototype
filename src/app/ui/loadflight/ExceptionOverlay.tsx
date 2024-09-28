@@ -246,7 +246,12 @@ export default function ExceptionOverlay({
 
   return (
     <div className={styles.overlay}>
-      <Header title="Load Exception" icon="close" showLogo={false} />
+      <Header
+        title="Load Exception"
+        icon="close"
+        showLogo={false}
+        backButton={backButton}
+      />
       <div className={styles.content}>
         <div className={styles.topcontent}>
           <AlertIcon />

@@ -50,3 +50,8 @@ ol li {
 ol li:last-child {
   margin-bottom: 0;
 }
+
+button {
+  background: none;
+  border-style: none;
+}
