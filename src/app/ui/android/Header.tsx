@@ -1,5 +1,5 @@
 import styles from "./Header.module.css";
-import { HamburgerMenuIcon, CloseMenuIcon } from "./Icons";
+import { HamburgerMenuIcon } from "./Icons";
 import CloseIconButton from "./CloseIconButton";
 import { PageTitle } from "./Typography";
 import BrockLogo from "./BrockLogo";
