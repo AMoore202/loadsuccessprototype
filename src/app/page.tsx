@@ -30,8 +30,9 @@ type ExceptionType =
   | "stoppedBag";
 
 export default function Home() {
-  const [showOverlay, setShowOverlay] = useState(false);
-  const [showException, setShowException] = useState(false);
+  const [isException, setIsException] = useState(false);
+  const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
+  const [showExceptionOverlay, setShowExceptionOverlay] = useState(false);
   const [lastScan, setLastScan] = useState("initial");
   const [successBeep, setSuccessBeep] = useState<HTMLAudioElement | null>(null);
   const [exceptionBeep, setExceptionBeep] = useState<HTMLAudioElement | null>(
@@ -61,48 +62,43 @@ export default function Home() {
 
   const openSuccessOverlay = () => {
     setTimeout(() => {
-      setShowOverlay(true);
+      setShowSuccessOverlay(true);
+      setShowExceptionOverlay(false);
       playSound(successBeep);
       setLastScan("success");
     }, 500);
 
     setTimeout(() => {
-      setShowOverlay(false);
+      setShowSuccessOverlay(false);
     }, 1200);
   };
 
   const openExceptionOverlay = () => {
     setTimeout(() => {
-      setShowOverlay(true);
+      setShowExceptionOverlay(true);
       playSound(exceptionBeep);
       setLastScan("exception");
     }, 500);
   };
 
+  const closeExceptionOverlay = () => {
+    setShowExceptionOverlay(false);
+  };
+
   const openOverlay = () => {
     setShowConfigOverlay(false);
-    if (showException) {
+    if (isException) {
       openExceptionOverlay();
     } else {
       openSuccessOverlay();
     }
   };
 
-  const closeOverlay = () => {
-    setShowOverlay(false);
-  };
-
   const handleExceptionToggleChange = (
     event: ChangeEvent<HTMLInputElement>
   ) => {
-    setShowException(event.target.checked);
+    setIsException(event.target.checked);
   };
-
-  const overlay = showException ? (
-    <ExceptionOverlay backButton={closeOverlay} exception={selectedException} />
-  ) : (
-    <SuccessOverlay />
-  );
 
   const toggleConfigOverlay = () => {
     setShowConfigOverlay(!showConfigOverlay);
@@ -122,7 +118,15 @@ export default function Home() {
             exceptionInputChange={handleExceptionSelectionChange}
           />
         )}
-        {showOverlay && overlay}
+        {showSuccessOverlay && <SuccessOverlay />}
+        {showExceptionOverlay && (
+          <ExceptionOverlay
+            backButton={closeExceptionOverlay}
+            overrideButton={openSuccessOverlay}
+            exception={selectedException}
+          />
+        )}
+
         <Header title="Load Flight" icon="hamburger" />
         <div className={styles.content}>
           <LoadFlightCards />
@@ -132,12 +136,12 @@ export default function Home() {
       <Scanbar>
         <OpenConfigButton onClick={toggleConfigOverlay} />
         <CustomSwitch
-          checked={showException}
+          checked={isException}
           onChange={handleExceptionToggleChange}
         />
         <ScanbarButton
           onClick={openOverlay}
-          scanButtonLightException={showException}
+          scanButtonLightException={isException}
         />
       </Scanbar>
     </main>

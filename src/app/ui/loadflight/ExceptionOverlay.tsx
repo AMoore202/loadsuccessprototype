@@ -68,6 +68,7 @@ function ActionContent({ type = "scheduledFlight" }: ActionContentProps) {
 
 interface ExceptionOverlayProps {
   backButton: React.MouseEventHandler<HTMLButtonElement>;
+  overrideButton: React.MouseEventHandler<HTMLButtonElement>;
   exception?:
     | "wrongContainerCategory"
     | "wrongContainerDestination"
@@ -86,6 +87,7 @@ interface ExceptionOverlayProps {
 
 export default function ExceptionOverlay({
   backButton,
+  overrideButton,
   exception = "wrongFlight",
 }: ExceptionOverlayProps) {
   const exceptionText =
@@ -274,6 +276,7 @@ export default function ExceptionOverlay({
       </div>
       <NavBar>
         <Button text="BACK" onClick={backButton} />
+        <Button text="OVERRIDE" onClick={overrideButton} />
       </NavBar>
     </div>
   );
