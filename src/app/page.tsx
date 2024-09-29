@@ -59,24 +59,32 @@ export default function Home() {
     }
   };
 
+  const openSuccessOverlay = () => {
+    setTimeout(() => {
+      setShowOverlay(true);
+      playSound(successBeep);
+      setLastScan("success");
+    }, 500);
+
+    setTimeout(() => {
+      setShowOverlay(false);
+    }, 1200);
+  };
+
+  const openExceptionOverlay = () => {
+    setTimeout(() => {
+      setShowOverlay(true);
+      playSound(exceptionBeep);
+      setLastScan("exception");
+    }, 500);
+  };
+
   const openOverlay = () => {
     setShowConfigOverlay(false);
     if (showException) {
-      setTimeout(() => {
-        setShowOverlay(true);
-        playSound(exceptionBeep);
-        setLastScan("exception");
-      }, 500);
+      openExceptionOverlay();
     } else {
-      setTimeout(() => {
-        setShowOverlay(true);
-        playSound(successBeep);
-        setLastScan("success");
-      }, 500);
-
-      setTimeout(() => {
-        setShowOverlay(false);
-      }, 1200);
+      openSuccessOverlay();
     }
   };
 
