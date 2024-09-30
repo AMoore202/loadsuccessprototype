@@ -41,6 +41,9 @@ export default function Home() {
   const [showConfigOverlay, setShowConfigOverlay] = useState(false);
   const [selectedException, setSelectedException] =
     useState<ExceptionType>("wrongFlight");
+  const [canOverrideException, setCanOverrideException] = useState(true);
+  const [canOverrideExceptionShown, setCanOverrideExceptionShown] =
+    useState(true);
 
   useEffect(() => {
     const successAudioFile = new Audio("/sounds/SuccessBeep.wav");
@@ -110,6 +113,25 @@ export default function Home() {
 
   const handleExceptionSelectionChange = (event: SelectChangeEvent<string>) => {
     setSelectedException(event.target.value as ExceptionType);
+    if (
+      event.target.value === "flightCancelled" ||
+      event.target.value === "containerClosed" ||
+      event.target.value === "flightClosed" ||
+      event.target.value === "standby" ||
+      event.target.value === "notAuthorized" ||
+      event.target.value === "stoppedBag" ||
+      event.target.value === "screeningRequired"
+    ) {
+      setCanOverrideExceptionShown(false);
+      setCanOverrideException(false);
+    } else {
+      setCanOverrideExceptionShown(true);
+      setCanOverrideException(true);
+    }
+  };
+
+  const handleCanOverrideException = (event: ChangeEvent<HTMLInputElement>) => {
+    setCanOverrideException(event.target.checked);
   };
 
   return (
@@ -120,6 +142,9 @@ export default function Home() {
             closeButton={toggleConfigOverlay}
             exceptionInputSelection={selectedException}
             exceptionInputChange={handleExceptionSelectionChange}
+            canOverrideSelection={canOverrideException}
+            handleOverrideChange={handleCanOverrideException}
+            canOverrideShown={canOverrideExceptionShown}
           />
         )}
         {showSuccessOverlay && <SuccessOverlay />}
@@ -128,6 +153,7 @@ export default function Home() {
             backButton={closeExceptionOverlay}
             overrideButton={() => openSuccessOverlay({ isOverride: true })}
             exception={selectedException}
+            showOverride={canOverrideException}
           />
         )}
 
