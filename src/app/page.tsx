@@ -60,18 +60,22 @@ export default function Home() {
     }
   };
 
-  const openSuccessOverlay = () => {
+  function openSuccessOverlay({ isOverride }: { isOverride: boolean }) {
     setTimeout(() => {
       setShowSuccessOverlay(true);
       setShowExceptionOverlay(false);
       playSound(successBeep);
-      setLastScan("success");
+      if (isOverride) {
+        setLastScan("successOverridden");
+      } else {
+        setLastScan("success");
+      }
     }, 500);
 
     setTimeout(() => {
       setShowSuccessOverlay(false);
     }, 1200);
-  };
+  }
 
   const openExceptionOverlay = () => {
     setTimeout(() => {
@@ -90,7 +94,7 @@ export default function Home() {
     if (isException) {
       openExceptionOverlay();
     } else {
-      openSuccessOverlay();
+      openSuccessOverlay({ isOverride: false });
     }
   };
 
@@ -122,7 +126,7 @@ export default function Home() {
         {showExceptionOverlay && (
           <ExceptionOverlay
             backButton={closeExceptionOverlay}
-            overrideButton={openSuccessOverlay}
+            overrideButton={() => openSuccessOverlay({ isOverride: true })}
             exception={selectedException}
           />
         )}
