@@ -126,7 +126,10 @@ export default function Home() {
     ) {
       setCanOverrideExceptionShown(false);
       setCanOverrideException(false);
-    } else if (event.target.value === "flaggedBag" || "hazmat") {
+    } else if (
+      event.target.value === "flaggedBag" ||
+      event.target.value === "hazmat"
+    ) {
       setCanOverrideExceptionShown(false);
       setCanOverrideException(true);
     } else {
