@@ -27,7 +27,9 @@ type ExceptionType =
   | "standby"
   | "notAuthorized"
   | "screeningRequired"
-  | "stoppedBag";
+  | "stoppedBag"
+  | "flaggedBag"
+  | "hazmat";
 
 export default function Home() {
   const [isException, setIsException] = useState(false);

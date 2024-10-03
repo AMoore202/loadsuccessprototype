@@ -15,11 +15,18 @@
     align-items: center;
     align-self: stretch;
     gap: 0.5rem;
-    background: var(--MC-ExceptionOverlay);
     height: 100%;
     padding: 1rem 0rem;
     flex: 1 1 auto;
     overflow: auto;
+}
+
+.contentException {
+    background: var(--MC-ExceptionOverlay);
+}
+
+.contentAlert {
+    background: var(--MC-Alert);
 }
 
 .topcontent {
@@ -39,12 +46,27 @@
     font-weight: 700;
 }
 
+.exceptiontextException {
+    color: var(--MC-White);
+}
+
+.exceptiontextAlert {
+    color: var(--MC-Black);
+}
+
 .cards {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     align-self: stretch;
+}
+
+.cardsException {
     border-bottom: 1px solid var(--MC-Grey);
+}
+
+.cardsAlert {
+    border-bottom: 1px solid var(--MC-DarkGrey);
 }
 
 .card {
@@ -54,7 +76,14 @@
     align-items: flex-start;
     gap: 1rem;
     padding: 1rem;
+}
+
+.cardException {
     border-top: 1px solid var(--MC-Grey);
+}
+
+.cardAlert {
+    border-top: 1px solid var(--MC-DarkGrey);
 }
 
 .cardcol {
