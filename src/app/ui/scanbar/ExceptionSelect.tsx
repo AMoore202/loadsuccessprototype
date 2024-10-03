@@ -12,12 +12,6 @@ export default function ExceptionSelect({
   value,
   onChange,
 }: ExceptionSelectProps) {
-  // const [selectedValue, setSelectedValue] = useState("");
-
-  // const handleChange = (event: SelectChangeEvent<string>) => {
-  //   setSelectedValue(event.target.value);
-  // };
-
   return (
     <FormControl fullWidth variant="filled" className="customSelect">
       <InputLabel
@@ -62,9 +56,9 @@ export default function ExceptionSelect({
           },
         }}
       >
-        <MenuItem value="">
+        {/* <MenuItem value="">
           <em>None</em>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem value={"wrongContainerCategory"}>
           Wrong ULD/Cart - Category
         </MenuItem>
@@ -84,6 +78,8 @@ export default function ExceptionSelect({
         <MenuItem value={"notAuthorized"}>Not Authorized</MenuItem>
         <MenuItem value={"screeningRequired"}>Screening Required</MenuItem>
         <MenuItem value={"stoppedBag"}>Stopped Bag</MenuItem>
+        <MenuItem value={"flaggedBag"}>Flagged Bag</MenuItem>
+        <MenuItem value={"hazmat"}>Hazmat</MenuItem>
       </Select>
     </FormControl>
   );

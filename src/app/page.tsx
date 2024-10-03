@@ -27,11 +27,14 @@ type ExceptionType =
   | "standby"
   | "notAuthorized"
   | "screeningRequired"
-  | "stoppedBag";
+  | "stoppedBag"
+  | "flaggedBag"
+  | "hazmat";
 
 export default function Home() {
-  const [showOverlay, setShowOverlay] = useState(false);
-  const [showException, setShowException] = useState(false);
+  const [isException, setIsException] = useState(false);
+  const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
+  const [showExceptionOverlay, setShowExceptionOverlay] = useState(false);
   const [lastScan, setLastScan] = useState("initial");
   const [successBeep, setSuccessBeep] = useState<HTMLAudioElement | null>(null);
   const [exceptionBeep, setExceptionBeep] = useState<HTMLAudioElement | null>(
@@ -40,6 +43,9 @@ export default function Home() {
   const [showConfigOverlay, setShowConfigOverlay] = useState(false);
   const [selectedException, setSelectedException] =
     useState<ExceptionType>("wrongFlight");
+  const [canOverrideException, setCanOverrideException] = useState(false);
+  const [canOverrideExceptionShown, setCanOverrideExceptionShown] =
+    useState(false);
 
   useEffect(() => {
     const successAudioFile = new Audio("/sounds/SuccessBeep.wav");
@@ -59,42 +65,49 @@ export default function Home() {
     }
   };
 
-  const openOverlay = () => {
-    setShowConfigOverlay(false);
-    if (showException) {
-      setTimeout(() => {
-        setShowOverlay(true);
-        playSound(exceptionBeep);
-        setLastScan("exception");
-      }, 500);
-    } else {
-      setTimeout(() => {
-        setShowOverlay(true);
-        playSound(successBeep);
+  function openSuccessOverlay({ isOverride }: { isOverride: boolean }) {
+    setTimeout(() => {
+      setShowSuccessOverlay(true);
+      setShowExceptionOverlay(false);
+      playSound(successBeep);
+      if (isOverride) {
+        setLastScan("successOverridden");
+      } else {
         setLastScan("success");
-      }, 500);
+      }
+    }, 500);
 
-      setTimeout(() => {
-        setShowOverlay(false);
-      }, 1200);
-    }
+    setTimeout(() => {
+      setShowSuccessOverlay(false);
+    }, 1200);
+  }
+
+  const openExceptionOverlay = () => {
+    setTimeout(() => {
+      setShowExceptionOverlay(true);
+      playSound(exceptionBeep);
+      setLastScan("exception");
+    }, 500);
   };
 
-  const closeOverlay = () => {
-    setShowOverlay(false);
+  const closeExceptionOverlay = () => {
+    setShowExceptionOverlay(false);
+  };
+
+  const openOverlay = () => {
+    setShowConfigOverlay(false);
+    if (isException) {
+      openExceptionOverlay();
+    } else {
+      openSuccessOverlay({ isOverride: false });
+    }
   };
 
   const handleExceptionToggleChange = (
     event: ChangeEvent<HTMLInputElement>
   ) => {
-    setShowException(event.target.checked);
+    setIsException(event.target.checked);
   };
-
-  const overlay = showException ? (
-    <ExceptionOverlay backButton={closeOverlay} exception={selectedException} />
-  ) : (
-    <SuccessOverlay />
-  );
 
   const toggleConfigOverlay = () => {
     setShowConfigOverlay(!showConfigOverlay);
@@ -102,6 +115,28 @@ export default function Home() {
 
   const handleExceptionSelectionChange = (event: SelectChangeEvent<string>) => {
     setSelectedException(event.target.value as ExceptionType);
+    if (
+      event.target.value === "flightCancelled" ||
+      event.target.value === "containerClosed" ||
+      event.target.value === "flightClosed" ||
+      event.target.value === "standby" ||
+      event.target.value === "notAuthorized" ||
+      event.target.value === "stoppedBag" ||
+      event.target.value === "screeningRequired"
+    ) {
+      setCanOverrideExceptionShown(false);
+      setCanOverrideException(false);
+    } else if (event.target.value === "flaggedBag" || "hazmat") {
+      setCanOverrideExceptionShown(false);
+      setCanOverrideException(true);
+    } else {
+      setCanOverrideExceptionShown(true);
+      setCanOverrideException(true);
+    }
+  };
+
+  const handleCanOverrideException = (event: ChangeEvent<HTMLInputElement>) => {
+    setCanOverrideException(event.target.checked);
   };
 
   return (
@@ -112,9 +147,21 @@ export default function Home() {
             closeButton={toggleConfigOverlay}
             exceptionInputSelection={selectedException}
             exceptionInputChange={handleExceptionSelectionChange}
+            canOverrideSelection={canOverrideException}
+            handleOverrideChange={handleCanOverrideException}
+            canOverrideShown={canOverrideExceptionShown}
           />
         )}
-        {showOverlay && overlay}
+        {showSuccessOverlay && <SuccessOverlay />}
+        {showExceptionOverlay && (
+          <ExceptionOverlay
+            backButton={closeExceptionOverlay}
+            overrideButton={() => openSuccessOverlay({ isOverride: true })}
+            exception={selectedException}
+            showOverride={canOverrideException}
+          />
+        )}
+
         <Header title="Load Flight" icon="hamburger" />
         <div className={styles.content}>
           <LoadFlightCards />
@@ -124,12 +171,12 @@ export default function Home() {
       <Scanbar>
         <OpenConfigButton onClick={toggleConfigOverlay} />
         <CustomSwitch
-          checked={showException}
+          checked={isException}
           onChange={handleExceptionToggleChange}
         />
         <ScanbarButton
           onClick={openOverlay}
-          scanButtonLightException={showException}
+          scanButtonLightException={isException}
         />
       </Scanbar>
     </main>

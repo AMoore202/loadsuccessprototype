@@ -11,6 +11,10 @@
     color: var(--MC-White);
 }
 
+.label-black {
+    color: var(--MC-Black);
+}
+
 .text-fill {
     width: 100%;
 }
