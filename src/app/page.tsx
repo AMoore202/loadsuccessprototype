@@ -43,9 +43,9 @@ export default function Home() {
   const [showConfigOverlay, setShowConfigOverlay] = useState(false);
   const [selectedException, setSelectedException] =
     useState<ExceptionType>("wrongFlight");
-  const [canOverrideException, setCanOverrideException] = useState(true);
+  const [canOverrideException, setCanOverrideException] = useState(false);
   const [canOverrideExceptionShown, setCanOverrideExceptionShown] =
-    useState(true);
+    useState(false);
 
   useEffect(() => {
     const successAudioFile = new Audio("/sounds/SuccessBeep.wav");
@@ -126,6 +126,9 @@ export default function Home() {
     ) {
       setCanOverrideExceptionShown(false);
       setCanOverrideException(false);
+    } else if (event.target.value === "flaggedBag" || "hazmat") {
+      setCanOverrideExceptionShown(false);
+      setCanOverrideException(true);
     } else {
       setCanOverrideExceptionShown(true);
       setCanOverrideException(true);

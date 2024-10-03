@@ -56,9 +56,9 @@ export default function ExceptionSelect({
           },
         }}
       >
-        <MenuItem value="">
+        {/* <MenuItem value="">
           <em>None</em>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem value={"wrongContainerCategory"}>
           Wrong ULD/Cart - Category
         </MenuItem>
