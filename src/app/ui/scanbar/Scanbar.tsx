@@ -5,14 +5,6 @@ interface ScanbarProps {
   children: React.ReactNode;
 }
 
-// export default function Scanbar( {children}: ScanbarProps ) {
-//     return(
-//         <div className={styles.scanbar}>
-//             {children}
-//         </div>
-//     );
-// }
-
 export default function Scanbar({ children }: ScanbarProps) {
   const childrenArray = React.Children.toArray(children);
   const leftContentChildren = childrenArray.slice(0, 2);

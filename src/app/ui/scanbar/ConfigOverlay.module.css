@@ -29,6 +29,13 @@
     padding: 1rem;
     align-items: flex-start;
     align-self: stretch;
+    gap: 1rem;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .option {

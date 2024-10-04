@@ -31,6 +31,8 @@ type ExceptionType =
   | "flaggedBag"
   | "hazmat";
 
+type SoundType = "old" | "new1" | "new2";
+
 export default function Home() {
   const [isException, setIsException] = useState(false);
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
@@ -80,11 +82,20 @@ export default function Home() {
     }
   };
 
+  const successSoundFile =
+    successSound === "old"
+      ? successBeepOld
+      : successSound === "new1"
+      ? successBeepNew1
+      : successSound === "new2"
+      ? successBeepNew2
+      : null;
+
   function openSuccessOverlay({ isOverride }: { isOverride: boolean }) {
     setTimeout(() => {
       setShowSuccessOverlay(true);
       setShowExceptionOverlay(false);
-      playSound(successBeepNew2);
+      playSound(successSoundFile);
       if (isOverride) {
         setLastScan("successOverridden");
       } else {
@@ -157,6 +168,10 @@ export default function Home() {
     setCanOverrideException(event.target.checked);
   };
 
+  const handleSuccessSoundChange = (event: SelectChangeEvent<string>) => {
+    setSuccessSound(event.target.value as SoundType);
+  };
+
   return (
     <main className={styles.main}>
       <div className={styles.android}>
@@ -168,6 +183,8 @@ export default function Home() {
             canOverrideSelection={canOverrideException}
             handleOverrideChange={handleCanOverrideException}
             canOverrideShown={canOverrideExceptionShown}
+            successSoundInputSelection={successSound}
+            successSoundInputChange={handleSuccessSoundChange}
           />
         )}
         {showSuccessOverlay && <SuccessOverlay />}
