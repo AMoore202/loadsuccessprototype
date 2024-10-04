@@ -31,12 +31,21 @@ type ExceptionType =
   | "flaggedBag"
   | "hazmat";
 
+type SoundType = "old" | "new1" | "new2";
+
 export default function Home() {
   const [isException, setIsException] = useState(false);
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
   const [showExceptionOverlay, setShowExceptionOverlay] = useState(false);
   const [lastScan, setLastScan] = useState("initial");
-  const [successBeep, setSuccessBeep] = useState<HTMLAudioElement | null>(null);
+  const [successBeepOld, setSuccessBeepOld] = useState<HTMLAudioElement | null>(
+    null
+  );
+  const [successBeepNew1, setSuccessBeepNew1] =
+    useState<HTMLAudioElement | null>(null);
+  const [successBeepNew2, setSuccessBeepNew2] =
+    useState<HTMLAudioElement | null>(null);
+  const [successSound, setSuccessSound] = useState("old");
   const [exceptionBeep, setExceptionBeep] = useState<HTMLAudioElement | null>(
     null
   );
@@ -48,13 +57,21 @@ export default function Home() {
     useState(false);
 
   useEffect(() => {
-    const successAudioFile = new Audio("/sounds/SuccessBeep.wav");
-    successAudioFile.preload = "auto";
+    const successAudioFileOld = new Audio("/sounds/SuccessBeep_Old.mp3");
+    successAudioFileOld.preload = "auto";
+
+    const successAudioFileNew1 = new Audio("/sounds/SuccessBeep_New1.wav");
+    successAudioFileNew1.preload = "auto";
+
+    const successAudioFileNew2 = new Audio("/sounds/SuccessBeep_New2.wav");
+    successAudioFileNew2.preload = "auto";
 
     const exceptionAudioFile = new Audio("/sounds/sound_failure.mp3");
     exceptionAudioFile.preload = "auto";
 
-    setSuccessBeep(successAudioFile);
+    setSuccessBeepOld(successAudioFileOld);
+    setSuccessBeepNew1(successAudioFileNew1);
+    setSuccessBeepNew2(successAudioFileNew2);
     setExceptionBeep(exceptionAudioFile);
   }, []);
 
@@ -65,11 +82,20 @@ export default function Home() {
     }
   };
 
+  const successSoundFile =
+    successSound === "old"
+      ? successBeepOld
+      : successSound === "new1"
+      ? successBeepNew1
+      : successSound === "new2"
+      ? successBeepNew2
+      : null;
+
   function openSuccessOverlay({ isOverride }: { isOverride: boolean }) {
     setTimeout(() => {
       setShowSuccessOverlay(true);
       setShowExceptionOverlay(false);
-      playSound(successBeep);
+      playSound(successSoundFile);
       if (isOverride) {
         setLastScan("successOverridden");
       } else {
@@ -142,6 +168,10 @@ export default function Home() {
     setCanOverrideException(event.target.checked);
   };
 
+  const handleSuccessSoundChange = (event: SelectChangeEvent<string>) => {
+    setSuccessSound(event.target.value as SoundType);
+  };
+
   return (
     <main className={styles.main}>
       <div className={styles.android}>
@@ -153,6 +183,8 @@ export default function Home() {
             canOverrideSelection={canOverrideException}
             handleOverrideChange={handleCanOverrideException}
             canOverrideShown={canOverrideExceptionShown}
+            successSoundInputSelection={successSound}
+            successSoundInputChange={handleSuccessSoundChange}
           />
         )}
         {showSuccessOverlay && <SuccessOverlay />}
