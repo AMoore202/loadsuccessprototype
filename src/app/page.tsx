@@ -75,10 +75,22 @@ export default function Home() {
     setExceptionBeep(exceptionAudioFile);
   }, []);
 
-  const playSound = (sound: HTMLAudioElement | null) => {
+  // const playSound = (sound: HTMLAudioElement | null) => {
+  //   if (sound) {
+  //     // sound.currentTime = 0;
+  //     // sound.play();
+  //     const soundClone = sound.cloneNode() as HTMLAudioElement;
+  //     soundClone.play();
+  //   }
+  // };
+
+  const playSoundThrottled = (sound: HTMLAudioElement | null) => {
     if (sound) {
-      sound.currentTime = 0;
-      sound.play();
+      if (!sound.paused) {
+        return; // Ignore if sound is already playing
+      }
+      const soundClone = sound.cloneNode() as HTMLAudioElement;
+      soundClone.play();
     }
   };
 
@@ -95,7 +107,7 @@ export default function Home() {
     setTimeout(() => {
       setShowSuccessOverlay(true);
       setShowExceptionOverlay(false);
-      playSound(successSoundFile);
+      playSoundThrottled(successSoundFile);
       if (isOverride) {
         setLastScan("successOverridden");
       } else {
@@ -111,7 +123,7 @@ export default function Home() {
   const openExceptionOverlay = () => {
     setTimeout(() => {
       setShowExceptionOverlay(true);
-      playSound(exceptionBeep);
+      playSoundThrottled(exceptionBeep);
       setLastScan("exception");
     }, 500);
   };
