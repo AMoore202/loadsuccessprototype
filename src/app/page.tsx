@@ -43,7 +43,11 @@ export default function Home() {
   );
   const [successBeepNew1, setSuccessBeepNew1] =
     useState<HTMLAudioElement | null>(null);
+  const [successBeepNew1_Boosted, setSuccessBeepNew1_Boosted] =
+    useState<HTMLAudioElement | null>(null);
   const [successBeepNew2, setSuccessBeepNew2] =
+    useState<HTMLAudioElement | null>(null);
+  const [successBeepNew2_Boosted, setSuccessBeepNew2_Boosted] =
     useState<HTMLAudioElement | null>(null);
   const [successSound, setSuccessSound] = useState("old");
   const [exceptionBeep, setExceptionBeep] = useState<HTMLAudioElement | null>(
@@ -60,22 +64,30 @@ export default function Home() {
     const successAudioFileOld = new Audio("/sounds/SuccessBeep_Old.mp3");
     successAudioFileOld.preload = "auto";
 
-    const successAudioFileNew1 = new Audio(
-      "/sounds/SuccessBeep_New1_Boosted_2.wav"
-    );
+    const successAudioFileNew1 = new Audio("/sounds/SuccessBeep_New1.wav");
     successAudioFileNew1.preload = "auto";
 
-    const successAudioFileNew2 = new Audio(
+    const successAudioFileNew1_Boosted = new Audio(
+      "/sounds/SuccessBeep_New1_Boosted_2.wav"
+    );
+    successAudioFileNew1_Boosted.preload = "auto";
+
+    const successAudioFileNew2 = new Audio("/sounds/SuccessBeep_New2.wav");
+    successAudioFileNew2.preload = "auto";
+
+    const successAudioFileNew2_Boosted = new Audio(
       "/sounds/SuccessBeep_New2_Boosted_2.wav"
     );
-    successAudioFileNew2.preload = "auto";
+    successAudioFileNew2_Boosted.preload = "auto";
 
     const exceptionAudioFile = new Audio("/sounds/sound_failure.mp3");
     exceptionAudioFile.preload = "auto";
 
     setSuccessBeepOld(successAudioFileOld);
     setSuccessBeepNew1(successAudioFileNew1);
+    setSuccessBeepNew1_Boosted(successAudioFileNew1_Boosted);
     setSuccessBeepNew2(successAudioFileNew2);
+    setSuccessBeepNew2_Boosted(successAudioFileNew2_Boosted);
     setExceptionBeep(exceptionAudioFile);
   }, []);
 
@@ -103,8 +115,12 @@ export default function Home() {
       ? successBeepOld
       : successSound === "new1"
       ? successBeepNew1
+      : successSound === "new1_boosted"
+      ? successBeepNew1_Boosted
       : successSound === "new2"
       ? successBeepNew2
+      : successSound === "new2_boosted"
+      ? successBeepNew2_Boosted
       : null;
 
   function openSuccessOverlay({ isOverride }: { isOverride: boolean }) {
