@@ -97,7 +97,9 @@ export function SuccessSoundSelect({ value, onChange }: SelectProps) {
     <StyledSelect value={value} onChange={onChange} label="Success Sound">
       <MenuItem value={"old"}>Current Beep</MenuItem>
       <MenuItem value={"new1"}>New Beep #1</MenuItem>
+      <MenuItem value={"new1_boosted"}>New Beep #1 Boosted</MenuItem>
       <MenuItem value={"new2"}>New Beep #2</MenuItem>
+      <MenuItem value={"new2_boosted"}>New Beep #2 Boosted</MenuItem>
     </StyledSelect>
   );
 }
