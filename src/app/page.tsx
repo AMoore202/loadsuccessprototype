@@ -60,10 +60,14 @@ export default function Home() {
     const successAudioFileOld = new Audio("/sounds/SuccessBeep_Old.mp3");
     successAudioFileOld.preload = "auto";
 
-    const successAudioFileNew1 = new Audio("/sounds/SuccessBeep_New1.wav");
+    const successAudioFileNew1 = new Audio(
+      "/sounds/SuccessBeep_New1_Boosted_2.wav"
+    );
     successAudioFileNew1.preload = "auto";
 
-    const successAudioFileNew2 = new Audio("/sounds/SuccessBeep_New2.wav");
+    const successAudioFileNew2 = new Audio(
+      "/sounds/SuccessBeep_New2_Boosted_2.wav"
+    );
     successAudioFileNew2.preload = "auto";
 
     const exceptionAudioFile = new Audio("/sounds/sound_failure.mp3");
